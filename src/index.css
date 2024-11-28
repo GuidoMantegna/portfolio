@@ -13,11 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  background-image: url('./assets/images/pattern.jpg');
+  background-clip: text;
+  background-size: cover;
+  color: transparent;
+}
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
