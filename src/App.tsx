@@ -1,12 +1,17 @@
-import './App.css'
+import "./App.css"
+import { Home, Projects, About, Contact } from "./pages"
+import { Layout } from "./components"
+// import Projects from "./pages/Projects"
 
 function App() {
-
   return (
     <>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+      <Layout>
+        <Home />
+        <Projects />
+        <About />
+        <Contact />
+      </Layout>
     </>
   )
 }
