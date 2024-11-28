@@ -5,24 +5,23 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [isLoaded, setIsLoaded] = useState(false)
   return (
-    <div className="container p-10 h-screen m-auto">
-      <header className="flex justify-between">
-        <button
+    <div className="">
+      <header className="flex justify-between fixed w-full left-0 p-10">
+        <a
+          href="#home"
           className="text-4xl font-black tracking-[-5px] GM-logo"
-          onLoad={() => setIsLoaded(true)}
         >
           GM.
-        </button>
+        </a>
         <nav className="flex gap-5 items-center">
-          <a href="projects" className="text-2xl font-bold">
+          <a href="#projects" className="text-2xl font-bold">
             PROJECTS
           </a>
-          <a href="about" className="text-2xl font-bold">
+          <a href="#about" className="text-2xl font-bold">
             ABOUT
           </a>
-          <a href="contact" className="text-2xl font-bold">
+          <a href="#contact" className="text-2xl font-bold">
             CONTACT
           </a>
         </nav>
