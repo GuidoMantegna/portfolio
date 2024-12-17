@@ -14,10 +14,17 @@
 }
 
 h1 {
-  background-image: url("./assets/images/pattern.jpg");
+  background-image: url("./assets/images/pattern-c.jpg");
   background-clip: text;
-  background-size: cover;
+  background-size: 80%;
   color: transparent;
+  /* filter: brightness(75%); */
+}
+
+.test-light {
+  background-image: url("./assets/images/pattern-b.jpg");
+  background-color: rgba(70, 70, 70, 0.8);
+  background-blend-mode: multiply;
 }
 
 body {
