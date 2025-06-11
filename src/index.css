@@ -18,7 +18,7 @@ h1 {
   background-clip: text;
   background-size: 80%;
   color: transparent;
-  /* filter: brightness(75%); */
+  filter: brightness(75%);
 }
 
 .test-light {
