@@ -14,11 +14,83 @@
 }
 
 h1 {
-  background-image: url("./assets/images/pattern-c.jpg");
+  /* background-image: url("./assets/images/pattern-c.jpg"); */
+  /* background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
   background-clip: text;
+  /* background-size: 80%; */
+  /* color: transparent; */
+  /* filter: brightness(75%); */
+  /* position: relative; */
+  mix-blend-mode: screen;
+  
+}
+
+/* .h1-main::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+   background-image: url("./assets/images/pattern-c.jpg");
+  width: 100%;
+  height: 100%;
+  clip-path: var(--main-clip);
+} */
+
+/* h1::before {
+  content: "Guido Mantegna";
+  position: absolute;
+  z-index: 20;
+  color: aliceblue;
+  background: #020024;
+  background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  width: 100%;
+  height: 100%;
+  clip-path: var(--after-clip-path);
+} */
+
+.gm-filter {
+  color: aliceblue;
+  /* background: #020024; */
+  background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  width: 100%;
+  height: 100%;
+  /* clip-path: var(--after-clip-path); */
+}
+
+.h1-mask {
+  background-image: url("./assets/images/pattern-c.jpg");
+  /* background-clip: text;
   background-size: 80%;
-  color: transparent;
-  filter: brightness(75%);
+  color: transparent; */
+  /* background: linear-gradient(180deg, rgb(29, 0, 61, 50%) 0%, rgb(0, 0, 0) 100%); */
+  color: white;
+  /* clip-path: unset rect(0, 0, 0, 0); */
+  /* mix-blend-mode: screen; */
+
+  
+}
+
+/* .h1-text {
+  mix-blend-mode: screen;
+
+} */
+
+.h1-mask::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  height: 4px;
+  border-top: 2px solid rgb(255, 255, 255);
+  top: var(--after-top);
+
+}
+
+.h1-mask::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgb(29, 0, 61, 70%) 0%, rgb(0, 0, 0, 95%) 50%, rgb(0, 0, 0) 100%);;
 }
 
 .test-light {
@@ -74,4 +146,23 @@ body {
   background-color: rgba(70, 70, 70, 0.8);
   background-blend-mode: multiply;
   padding: 2rem 0;
+}
+
+.filter {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  mask-size: cover;
+  mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/40713/xray-machine.png');
+}
+
+.hover-bar {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgb(255, 255, 255); */
+  background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
