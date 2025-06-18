@@ -9,7 +9,7 @@ const Projects: React.FC = () => {
       className="h-screen flex items-center text-white relative bg-black"
       id="projects"
     >
-      <div className="mx-10 flex-1 relative">
+      {/* <div className="mx-10 flex-1 relative">
         <h3 className="font-black text-6xl">Full-Stack Movie Rec. App</h3>
         <p className="stack mt-3 text-pink-400">
           mongo, express, react, node, typescript, tailwind, vite, mongoose
@@ -41,7 +41,7 @@ const Projects: React.FC = () => {
           alt="Mocked Mobiles"
           className="h-3/4 relative"
         />
-      </div>
+      </div> */}
     </section>
   )
 }

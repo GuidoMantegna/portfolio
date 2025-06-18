@@ -7,8 +7,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="relative">
-      <header className="flex justify-between w-full absolute left-0 p-10">
-        {/* <header className="flex justify-between fixed w-full left-0 p-10"> */}
+      <header className="flex justify-between w-full absolute left-0 px-10 py-8 z-[1] bg-white">
         <a href="#home" className="text-4xl font-black tracking-[-5px] GM-logo">
           GM.
         </a>

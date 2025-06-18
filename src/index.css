@@ -13,25 +13,85 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  background-image: url("./assets/images/pattern-c.jpg");
-  background-clip: text;
-  background-size: 80%;
-  color: transparent;
-  /* filter: brightness(75%); */
-}
-
-.test-light {
-  background-image: url("./assets/images/pattern-b.jpg");
-  background-color: rgba(70, 70, 70, 0.8);
-  background-blend-mode: multiply;
-}
-
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
+
+.stack, .code-lines-numbers {
+  font-family: "Lekton", monospace;
+}
+
+/* HOME */
+
+h1 {
+  font-size: 120px;
+  font-weight: 800;
+  line-height: 85px;
+  padding-left: 10%;
+  mix-blend-mode: screen;
+}
+
+/* .h1-main::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+   background-image: url("./assets/images/pattern-c.jpg");
+  width: 100%;
+  height: 100%;
+  clip-path: var(--main-clip);
+} */
+
+.h1-mask {
+  background-image: url("./assets/images/pattern-c.jpg");
+  color: white;
+}
+
+.h1-mask::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  height: 4px;
+  border-top: 2px solid rgb(255, 255, 255);
+  top: var(--after-top);
+}
+
+.h1-mask::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgb(29, 0, 61, 70%) 0%, rgb(0, 0, 0, 95%) 50%, rgb(0, 0, 0) 100%);;
+}
+
+.code-lines-numbers.mask {
+  color: white;
+}
+
+.roles {
+  color: transparent;
+  background: linear-gradient(90deg, rgb(42, 0, 87) 0%, rgb(94, 0, 0) 100%);
+  background-clip: text;
+}
+
+/* .role-0 {
+  background: linear-gradient(90deg, rgb(42, 0, 87) 0%, rgb(94, 0, 0) 100%);
+  background-clip: text;
+  color: oklch(55.5% 0.163 48.998)
+}
+.role-1 {
+  background: linear-gradient(90deg, rgb(3, 0, 41) 0%, rgb(0, 119, 89) 100%);
+  background-clip: text;
+  color: oklch(44.8% 0.119 151.328)
+}
+.role-2 {
+  background: linear-gradient(90deg, rgb(68, 19, 0) 0%, rgb(131, 129, 0) 100%);
+  background-clip: text;
+  color: oklch(40.8% 0.153 2.432)
+} */
 
 .GM-logo {
   background: linear-gradient(50deg, #f73e1e 50%, #000 50%);
@@ -40,13 +100,8 @@ body {
   padding: 2px;
 }
 
-.stack {
-  font-family: "Lekton", monospace;
-}
-
 /* PROJECTS */
 #projects {
-  /* padding: 2rem 0; */
 }
 
 .projects-mockups {

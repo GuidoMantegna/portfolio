@@ -1,88 +1,154 @@
-import React, { useEffect, useState } from "react"
-import { motion } from "motion/react"
+import React, { useEffect, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "motion/react";
 
-const draw = {
-  hidden: { pathLength: 0, opacity: 0 },
-  visible: (i: number) => {
-    const delay = 1 + i * 0.1
-    return {
-      // dashArray: 200,
-      // pathLength: 1,
-      opacity: 1,
-      transition: {
-        // pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
-        opacity: { delay, duration: 0.01 },
-      },
-    }
+const ROLES = [
+  "<Front-end Developer/>",
+  "<Software Engineer/>",
+  "<JS Developer/>",
+];
+
+const FrontendVariants = (isScr0llingUp: boolean) => ({
+  initial: {
+    opacity: 0,
+    y: isScr0llingUp ? 20 : -20,
+    filter: "blur(10px)",
+    transition: { duration: 0.5 },
   },
-}
+  animate: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+  },
+  exit: {
+    opacity: 0,
+    y: isScr0llingUp ? -20 : 20,
+    filter: "blur(10px)",
+    transition: {
+      duration: 0.25,
+    },
+  },
+});
 
-const frontend = "<Front-end Developer/>".split("")
+const CODE_LINE_NUMBERS = [...Array(window.innerHeight)].map((_, i) => i + 1);
 
 const Home: React.FC = () => {
-  const [H1BackPosition, setH1BackPosition] = useState({ x: 0, y: 0 })
-  const H1Ref = React.useRef<HTMLHeadingElement>(null)
+  // const [H1BackPosition, setH1BackPosition] = useState({ x: 0, y: 0 });
+  const titleRef = React.useRef<HTMLDivElement>(null);
+  const { scrollYProgress, scrollY } = useScroll({
+    target: titleRef,
+    offset: ["start start", "end end"],
+  });
+  const [selectedTextIndex, setSelectedTextIndex] = useState(0);
+  const [isScr0llingUp, setIsScr0llingUp] = useState(false);
+  const [h1MaskPosition, setH1MaskPosition] = useState(0);
+  const [codeLines, setCodeLines] = useState<number[]>(CODE_LINE_NUMBERS);
 
-  useEffect(() => {
-    // Get mouse position
-    const setH1BG = (e: MouseEvent) => {
-      const x = e.clientX
-      const y = e.clientY
-      const windowWidth = window.innerWidth
-      const windowHeight = window.innerHeight
-      const YCenter = windowHeight / 2
-      const XCenter = windowWidth / 2
-      const isUp = y < YCenter
-      const isLeft = x < XCenter
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const prevY = scrollY.getPrevious() || 0;
+    const currY = scrollY.get();
 
-      setH1BackPosition({ x: isLeft ? -4 : 4, y: isUp ? 1 : -1 })
-    }
+    setIsScr0llingUp(prevY > currY);
+    setSelectedTextIndex(Math.floor(latest * 10));
+    setH1MaskPosition(-25 * latest * 10 + 200);
+    setCodeLines(CODE_LINE_NUMBERS.slice(Math.floor(latest * 10) * 10));
+  });
 
-    // Add event listener
-    document.addEventListener("mousemove", setH1BG)
+  // useEffect(() => {
+  //   const setH1BG = (e: MouseEvent) => {
+  //     const x = e.clientX;
+  //     const y = e.clientY;
+  //     const windowWidth = window.innerWidth;
+  //     const windowHeight = window.innerHeight;
 
-    // Remove event listener
-    return () => {
-      document.removeEventListener("mousemove", setH1BG)
-    }
-  }, [])
+  //     setH1BackPosition({
+  //       x: Math.floor((x / windowWidth) * 100),
+  //       y: Math.floor((y / windowHeight) * 100),
+  //     });
+  //   };
+
+  //   document.addEventListener("mousemove", setH1BG);
+
+  //   return () => {
+  //     document.removeEventListener("mousemove", setH1BG);
+  //   };
+  // }, []);
 
   return (
     <>
-      <section className="h-screen flex items-center" id="home">
+      <section className="h-[250vh] relative bg-white" id="home" ref={titleRef}>
         <motion.div
-          initial={{ y: "-20px" }}
-          whileInView={{ y: "0" }}
-          transition={{ type: "spring" }}
+          className="sticky top-0 h-[100vh] py-[4%] flex flex-col justify-center"
+          // style={{
+          //   ["--main-clip" as any]: `circle(5% at ${H1BackPosition.x}% ${H1BackPosition.y}%)`,
+          // }}
         >
-          <h1
-            ref={H1Ref}
-            className={`text-[140px] leading-[110px] text-left font-extrabold py-[4%] ps-[5%] transition-all ease-linear duration-500`}
+          <motion.div className="code-lines-numbers absolute left-8 flex flex-col text-gray-900 text-xs gap-2 text-right h-[75%] overflow-hidden">
+            {codeLines.map((lineNumber) => (
+              <motion.span
+                key={`line-number-${lineNumber}`}
+                className="line-number"
+                layout
+              >
+                {lineNumber}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.h1 className={``} layout>
+            Guido
+            <br />
+            Mantegna.
+          </motion.h1>
+
+          <AnimatePresence mode="popLayout">
+            {ROLES.map((text, index) => {
+              if (index !== selectedTextIndex) return null;
+              return (
+                <motion.h2
+                  className={`text-[60px] font-extrabold mt-4 pl-[10%] tracking-tighter roles role-${selectedTextIndex}`}
+                  key={`ROLES-${index}`}
+                  variants={FrontendVariants(isScr0llingUp)}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                >
+                  {text}
+                </motion.h2>
+              );
+            })}
+          </AnimatePresence>
+          <motion.div
+            className="absolute w-full h-full left-0 py-[4%] flex flex-col justify-center h1-mask"
             style={{
-              backgroundPositionX: `${H1BackPosition.x}%`,
-              backgroundPositionY: `${H1BackPosition.y}%`,
+              clipPath: `inset(${h1MaskPosition}% 0px 0px 0px)`,
+              ["--after-top" as any]: `${h1MaskPosition}%`,
             }}
           >
-            Guido Mantegna.
-            {/* <span className="block text-[60px] text-gray-950">{`<Front-end Developer/>`}</span> */}
-            <span className="text-[60px] text-gray-950 flex">
-              {frontend.map((el, i) => (
-                <motion.p
-                  variants={draw}
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                  className={el === "d" ? "pr-[15px]" : ""}
+            <motion.div className="code-lines-numbers absolute left-8 flex flex-col text-gray-900 text-xs gap-2 text-right h-[75%] overflow-hidden mask">
+              {codeLines.map((lineNumber) => (
+                <motion.span
+                  key={`line-number-${lineNumber}`}
+                  className="line-number"
+                  layout
                 >
-                  {el}
-                </motion.p>
+                  {lineNumber}
+                </motion.span>
               ))}
-            </span>
-          </h1>
+            </motion.div>
+            <motion.h1 className={`h1-text`}>
+              Guido
+              <br />
+              Mantegna.
+            </motion.h1>
+          </motion.div>
         </motion.div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
