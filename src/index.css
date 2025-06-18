@@ -13,16 +13,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+.stack, .code-lines-numbers {
+  font-family: "Lekton", monospace;
+}
+
+/* HOME */
+
 h1 {
-  /* background-image: url("./assets/images/pattern-c.jpg"); */
-  /* background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
-  background-clip: text;
-  /* background-size: 80%; */
-  /* color: transparent; */
-  /* filter: brightness(75%); */
-  /* position: relative; */
+  font-size: 120px;
+  font-weight: 800;
+  line-height: 85px;
+  padding-left: 10%;
   mix-blend-mode: screen;
-  
 }
 
 /* .h1-main::after {
@@ -35,44 +44,10 @@ h1 {
   clip-path: var(--main-clip);
 } */
 
-/* h1::before {
-  content: "Guido Mantegna";
-  position: absolute;
-  z-index: 20;
-  color: aliceblue;
-  background: #020024;
-  background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-  width: 100%;
-  height: 100%;
-  clip-path: var(--after-clip-path);
-} */
-
-.gm-filter {
-  color: aliceblue;
-  /* background: #020024; */
-  background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-  width: 100%;
-  height: 100%;
-  /* clip-path: var(--after-clip-path); */
-}
-
 .h1-mask {
   background-image: url("./assets/images/pattern-c.jpg");
-  /* background-clip: text;
-  background-size: 80%;
-  color: transparent; */
-  /* background: linear-gradient(180deg, rgb(29, 0, 61, 50%) 0%, rgb(0, 0, 0) 100%); */
   color: white;
-  /* clip-path: unset rect(0, 0, 0, 0); */
-  /* mix-blend-mode: screen; */
-
-  
 }
-
-/* .h1-text {
-  mix-blend-mode: screen;
-
-} */
 
 .h1-mask::after {
   content: "";
@@ -82,7 +57,6 @@ h1 {
   height: 4px;
   border-top: 2px solid rgb(255, 255, 255);
   top: var(--after-top);
-
 }
 
 .h1-mask::before {
@@ -93,17 +67,31 @@ h1 {
   background: linear-gradient(180deg, rgb(29, 0, 61, 70%) 0%, rgb(0, 0, 0, 95%) 50%, rgb(0, 0, 0) 100%);;
 }
 
-.test-light {
-  background-image: url("./assets/images/pattern-b.jpg");
-  background-color: rgba(70, 70, 70, 0.8);
-  background-blend-mode: multiply;
+.code-lines-numbers.mask {
+  color: white;
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
+.roles {
+  color: transparent;
+  background: linear-gradient(90deg, rgb(42, 0, 87) 0%, rgb(94, 0, 0) 100%);
+  background-clip: text;
 }
+
+/* .role-0 {
+  background: linear-gradient(90deg, rgb(42, 0, 87) 0%, rgb(94, 0, 0) 100%);
+  background-clip: text;
+  color: oklch(55.5% 0.163 48.998)
+}
+.role-1 {
+  background: linear-gradient(90deg, rgb(3, 0, 41) 0%, rgb(0, 119, 89) 100%);
+  background-clip: text;
+  color: oklch(44.8% 0.119 151.328)
+}
+.role-2 {
+  background: linear-gradient(90deg, rgb(68, 19, 0) 0%, rgb(131, 129, 0) 100%);
+  background-clip: text;
+  color: oklch(40.8% 0.153 2.432)
+} */
 
 .GM-logo {
   background: linear-gradient(50deg, #f73e1e 50%, #000 50%);
@@ -112,13 +100,8 @@ body {
   padding: 2px;
 }
 
-.stack {
-  font-family: "Lekton", monospace;
-}
-
 /* PROJECTS */
 #projects {
-  /* padding: 2rem 0; */
 }
 
 .projects-mockups {
@@ -146,23 +129,4 @@ body {
   background-color: rgba(70, 70, 70, 0.8);
   background-blend-mode: multiply;
   padding: 2rem 0;
-}
-
-.filter {
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  position: absolute;
-  mask-size: cover;
-  mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/40713/xray-machine.png');
-}
-
-.hover-bar {
-  position: absolute;
-  top: 55%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* background-color: rgb(255, 255, 255); */
-  background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
