@@ -109,7 +109,7 @@ h1 {
   background-repeat: no-repeat;
 }
 
-#projects::before {
+.project::before {
   content: "";
   display: block;
   position: absolute;

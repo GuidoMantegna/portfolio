@@ -4,6 +4,8 @@ import {
   motion,
   useMotionValueEvent,
   useScroll,
+  useSpring,
+  useTransform,
 } from "motion/react";
 
 const ROLES = [
@@ -45,8 +47,14 @@ const Home: React.FC = () => {
   });
   const [selectedTextIndex, setSelectedTextIndex] = useState(0);
   const [isScr0llingUp, setIsScr0llingUp] = useState(false);
-  const [h1MaskPosition, setH1MaskPosition] = useState(0);
+  const [h1MaskPosition, setH1MaskPosition] = useState(100);
   const [codeLines, setCodeLines] = useState<number[]>(CODE_LINE_NUMBERS);
+
+  // const softLastes = useSpring(scrollYProgress, {
+  //   stiffness: 100,
+  //   damping: 30,
+  //   restDelta: 0.001,
+  // });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const prevY = scrollY.getPrevious() || 0;
@@ -57,6 +65,12 @@ const Home: React.FC = () => {
     setH1MaskPosition(-25 * latest * 10 + 200);
     setCodeLines(CODE_LINE_NUMBERS.slice(Math.floor(latest * 10) * 10));
   });
+
+  // const maskPercentage = useTransform(
+  //   scrollYProgress,
+  //   [0, 1],
+  //   [100, 0]
+  // )
 
   // useEffect(() => {
   //   const setH1BG = (e: MouseEvent) => {

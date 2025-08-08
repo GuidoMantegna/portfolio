@@ -1,5 +1,5 @@
 import "./App.css"
-import { Home, Projects, About, Contact } from "./pages"
+import { Home, Projects, About, Contact, ProjectsCopy } from "./pages"
 import { Layout } from "./components"
 // import Projects from "./pages/Projects"
 
@@ -8,7 +8,8 @@ function App() {
     <>
       <Layout>
         <Home />
-        <Projects />
+        {/* <Projects /> */}
+        <ProjectsCopy />
         <About />
         <Contact />
       </Layout>
