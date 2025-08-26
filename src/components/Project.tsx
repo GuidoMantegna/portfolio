@@ -7,6 +7,7 @@ interface ProjectInfo {
   title: string;
   description: string;
   stack: string;
+  mockups?: string;
   links: { name: string; url: string; type: string }[];
 }
 
@@ -15,10 +16,11 @@ const Project: React.FC<ProjectInfo> = ({
   description,
   stack,
   links,
+  mockups = "",
 }) => {
   return (
     <motion.div
-      className="flex-1 p-12 flex flex-col justify-center"
+      className="bg-zinc-900 flex-1 p-12 flex justify-around absolute h-full z-[1] project-info"
       initial={{ x: -50, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 0.2, duration: 0.6 }}
@@ -27,7 +29,7 @@ const Project: React.FC<ProjectInfo> = ({
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="text-white"
+        className="text-white w-1/2"
       >
         <h2 className="font-black text-5xl">{title}</h2>
         <p className="stack mt-3 text-pink-400 text-sm">{stack}</p>
@@ -49,6 +51,13 @@ const Project: React.FC<ProjectInfo> = ({
           ))}
         </div>
       </motion.div>
+      <motion.img
+        src={mockups}
+        alt={title}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.2, duration: 0.25 }}
+      />
     </motion.div>
   );
 };

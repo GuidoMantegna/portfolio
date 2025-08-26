@@ -11,6 +11,7 @@ import {
 } from "motion/react";
 import { Project } from "../components";
 import { PROJECTS_INFO, ProjectInfo } from "../constants";
+import { IoClose } from "react-icons/io5";
 import IMG from "../assets/images/mountains.jpg";
 import RECS from "../assets/images/mockups/recs-thumbnail.png";
 import TECKMARKET from "../assets/images/mockups/techmarket-thumbnail.png";
@@ -150,16 +151,28 @@ const ProjectsCopy: React.FC = () => {
             >
               <motion.div
                 layoutId={`project-${selectedProject.id}`}
-                className="w-full max-w-6xl h-full max-h-[80vh] bg-zinc-900 rounded-2xl overflow-hidden relative"
+                className="w-full max-w-6xl h-full max-h-[80vh] rounded-2xl overflow-hidden relative"
+                // className="w-full max-w-6xl h-full max-h-[80vh] bg-zinc-900 rounded-2xl overflow-hidden relative"
               >
-                <button
+                <motion.button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-6 right-6 z-10 text-white"
+                  whileHover={{
+                    scale: 1.25,
+                    rotate: 90,
+                    transition: { duration: 0.3 },
+                  }}
+                >
+                  <IoClose size={28} />
+                </motion.button>
+                {/* <button
                   onClick={() => setSelectedProject(null)}
                   className="absolute top-6 right-6 z-10 bg-white/90 hover:bg-white rounded-full p-2 transition-colors"
                 >
-                  X
-                </button>
+                  <IoClose size={24} />
+                </button> */}
 
-                <div className="h-full flex">
+                <div className="h-full flex justify-end">
                   {/* Left side - Content */}
                   {/* <motion.div
                     className="flex-1 p-12 flex flex-col justify-center"
@@ -189,11 +202,13 @@ const ProjectsCopy: React.FC = () => {
                     description={selectedProject.description}
                     stack={selectedProject.stack}
                     links={selectedProject.links}
+                    mockups={selectedProject.mockups}
                   />
 
                   {/* Right side - Image */}
                   <motion.div
-                    className="flex-1 relative"
+                    className="relative w-1/2"
+                    // className="flex-1 relative"
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.1, duration: 0.6 }}
@@ -202,9 +217,20 @@ const ProjectsCopy: React.FC = () => {
                       layoutId={`project-image-${selectedProject.id}`}
                       className="w-full h-full rounded-l-2xl overflow-hidden"
                     >
+                    {/* <motion.div className="absolute z-[1]">
+                      
+                      <motion.img
+                        src={selectedProject.mockups}
+                        alt={selectedProject.title}
+                        initial={{ y: -100 }}
+                        animate={{ y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.25 }}
+                        className="absolute z-[2] top-[20%]"
+                      />
+                    </motion.div> */}
                       <motion.img
                         layoutId={`project-img-${selectedProject.id}`}
-                        src={selectedProject.image}
+                        src={selectedProject.background}
                         alt={selectedProject.title}
                         className="w-full h-full object-cover"
                       />
