@@ -47,7 +47,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
     description: "Built a fully responsive web app where users redeem products through a points-based system, providing a seamless experience across all devices.",
     stack: "react, javascript, sass, axios, redux, redux-thunk, vercel",
     image: "/techmarket-thumbnail.png",
-    mockups: "/techmarket-mockups1.png",
+    mockups: "/techmarket-mockups.png",
     background: "/techmarket-back.png",
     links: [
       {
@@ -68,7 +68,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
     description: "Developed a trivia game with multiple topics, featuring multiple-choice and true/false questions. Designed a Gameboy-inspired UI for a nostalgic user experience.",
     stack: "next, typescript, sass, vercel",
     image: "/gameboy-thumbnail.png",
-    mockups: "/gameboy-mockups1.png",
+    mockups: "/gameboy-mockups.png",
     background: "/gameboy-back.png",
     links: [
       {
