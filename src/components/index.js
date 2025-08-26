@@ -1,3 +1,4 @@
-import Layout from "./Layout"
+import Layout from './Layout';
+import Project from './Project';
 
-export { Layout }
+export { Layout, Project };
