@@ -6,6 +6,7 @@ import {
   AnimatePresence,
   LayoutGroup,
 } from "motion/react";
+// @ts-ignore
 import { Project } from "../components";
 import { PROJECTS_INFO, ProjectInfo } from "../constants";
 import { IoClose } from "react-icons/io5";

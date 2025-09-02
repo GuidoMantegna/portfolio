@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
   useScroll,
-  useSpring,
-  useTransform,
 } from "motion/react";
 
 const ROLES = [
   "<Front-end Developer/>",
   "<Software Engineer/>",
-  "<JS Developer/>",
+  "<Love to build things/>",
 ];
 
 const FrontendVariants = (isScr0llingUp: boolean) => ({
@@ -39,7 +37,6 @@ const FrontendVariants = (isScr0llingUp: boolean) => ({
 const CODE_LINE_NUMBERS = [...Array(window.innerHeight)].map((_, i) => i + 1);
 
 const Home: React.FC = () => {
-  // const [H1BackPosition, setH1BackPosition] = useState({ x: 0, y: 0 });
   const titleRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress, scrollY } = useScroll({
     target: titleRef,
@@ -49,12 +46,6 @@ const Home: React.FC = () => {
   const [isScr0llingUp, setIsScr0llingUp] = useState(false);
   const [h1MaskPosition, setH1MaskPosition] = useState(100);
   const [codeLines, setCodeLines] = useState<number[]>(CODE_LINE_NUMBERS);
-
-  // const softLastes = useSpring(scrollYProgress, {
-  //   stiffness: 100,
-  //   damping: 30,
-  //   restDelta: 0.001,
-  // });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const prevY = scrollY.getPrevious() || 0;
@@ -66,41 +57,10 @@ const Home: React.FC = () => {
     setCodeLines(CODE_LINE_NUMBERS.slice(Math.floor(latest * 10) * 10));
   });
 
-  // const maskPercentage = useTransform(
-  //   scrollYProgress,
-  //   [0, 1],
-  //   [100, 0]
-  // )
-
-  // useEffect(() => {
-  //   const setH1BG = (e: MouseEvent) => {
-  //     const x = e.clientX;
-  //     const y = e.clientY;
-  //     const windowWidth = window.innerWidth;
-  //     const windowHeight = window.innerHeight;
-
-  //     setH1BackPosition({
-  //       x: Math.floor((x / windowWidth) * 100),
-  //       y: Math.floor((y / windowHeight) * 100),
-  //     });
-  //   };
-
-  //   document.addEventListener("mousemove", setH1BG);
-
-  //   return () => {
-  //     document.removeEventListener("mousemove", setH1BG);
-  //   };
-  // }, []);
-
   return (
     <>
       <section className="h-[250vh] relative bg-white" id="home" ref={titleRef}>
-        <motion.div
-          className="sticky top-0 h-[100vh] py-[4%] flex flex-col justify-center"
-          // style={{
-          //   ["--main-clip" as any]: `circle(5% at ${H1BackPosition.x}% ${H1BackPosition.y}%)`,
-          // }}
-        >
+        <motion.div className="sticky top-0 h-[100vh] py-[4%] flex flex-col justify-center">
           <motion.div className="code-lines-numbers absolute left-8 flex flex-col text-gray-900 text-xs gap-2 text-right h-[75%] overflow-hidden">
             {codeLines.map((lineNumber) => (
               <motion.span
