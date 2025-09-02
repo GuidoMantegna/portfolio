@@ -107,6 +107,20 @@ h1 {
   );
 }
 
+/* ABOUT */
+#about {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.99) 5%,
+    rgba(0, 0, 0, 0.98) 7%,
+    rgba(0, 0, 0, 0.97) 10%,
+    #1386EB 70%
+    /* rgba(255, 255, 255, .99) 99% */
+    /* #500031 70% */
+    /* #1386EB 70% */
+  )
+}
+
 /* CONTACT */
 #contact {
   background-image: url("./assets/images/pattern.jpg");
