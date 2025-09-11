@@ -114,11 +114,33 @@ h1 {
     rgba(0, 0, 0, 0.99) 5%,
     rgba(0, 0, 0, 0.98) 7%,
     rgba(0, 0, 0, 0.97) 10%,
-    #1386EB 70%
+    rgb(19, 134, 235) 70%
     /* rgba(255, 255, 255, .99) 99% */
     /* #500031 70% */
     /* #1386EB 70% */
   )
+
+}
+
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none; /* don’t block interaction */
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(19, 134, 235), transparent);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(19, 134, 235), transparent);
 }
 
 /* CONTACT */
