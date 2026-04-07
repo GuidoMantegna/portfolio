@@ -36,10 +36,11 @@ const ProjectsCopy: React.FC = () => {
 
   return (
     <section
-      className="h-[150vh]  relative bg-black"
+      className="h-[150vh] relative"
       id="projects"
       ref={projectsRef}
     >
+      <div className="absolute -top-20 left-0 w-full h-48 bg-gradient-to-b from-[#020202] to-transparent pointer-events-none z-10" />
       <LayoutGroup>
         <AnimatePresence mode="wait">
           {!selectedProject ? (
@@ -49,11 +50,11 @@ const ProjectsCopy: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="max-w-6xl mx-auto sticky top-0"
+                className="max-w-6xl mx-auto sticky top-5 mt-20 z-10"
               >
                 <div className="text-center mb-16">
                   <motion.h1
-                    className="text-6xl font-bold mb-6"
+                    className="text-6xl font-bold mb-6 text-white"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}

@@ -118,6 +118,7 @@ const Home: React.FC = () => {
               <br />
               Mantegna.
             </motion.h1>
+            {/* <div className="h-[200vh]"></div> */}
           </motion.div>
         </motion.div>
       </section>
