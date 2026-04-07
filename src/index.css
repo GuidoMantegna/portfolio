@@ -34,9 +34,60 @@ h1 {
   mix-blend-mode: screen;
 }
 
-.h1-mask {
+/* Parallax Background Layers */
+.parallax-container {
+  z-index: 0;
+}
+
+.parallax-layer {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.parallax-layer-base {
   background-image: url("./assets/images/pattern-c.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+}
+
+.parallax-layer-mid {
+  background: transparent;
+}
+
+.parallax-layer-top {
+  background-image: 
+    linear-gradient(90deg, transparent 98%, rgba(100, 100, 100, 0.03) 98%),
+    linear-gradient(0deg, transparent 98%, rgba(100, 100, 100, 0.03) 98%);
+  background-size: 80px 80px;
+  opacity: 0.5;
+}
+
+.parallax-gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(29, 0, 61, 0.1) 30%,
+    rgba(29, 0, 61, 0.3) 60%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+/* Parallax background inside mask area */
+.parallax-mask-bg {
+  background-image: url("./assets/images/pattern-c.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.h1-mask {
+  background: transparent;
   color: white;
+  overflow: hidden;
 }
 
 .h1-mask::after {
@@ -47,6 +98,7 @@ h1 {
   height: 4px;
   border-top: 2px solid rgb(255, 255, 255);
   top: var(--after-top);
+  z-index: 20;
 }
 
 .h1-mask::before {
@@ -54,7 +106,9 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgb(29, 0, 61, 70%) 0%, rgb(0, 0, 0, 95%) 50%, rgb(0, 0, 0) 100%);;
+  background: linear-gradient(180deg, rgba(29, 0, 61, 0.7) 0%, rgba(0, 0, 0, 0.95) 50%, rgb(0, 0, 0) 100%);
+  z-index: 5;
+  pointer-events: none;
 }
 
 .code-lines-numbers.mask {
