@@ -1,17 +1,15 @@
 import "./App.css"
 import { Home, Projects, About, Contact } from "./pages"
+import { ProjectsSection } from "./pages/Projects-v2"
 import { Layout } from "./components"
 import { ParallaxBackground } from "./components/ParallaxBackground"
 
 function App() {
   return (
       <Layout>
-        <Home />
-        {/* <div className="relative"> */}
         <ParallaxBackground />
-
-        {/* </div> */}
-        <Projects />
+        <Home />
+        <ProjectsSection />
         <About />
         <Contact />
       </Layout>

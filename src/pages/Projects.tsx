@@ -36,7 +36,7 @@ const ProjectsCopy: React.FC = () => {
 
   return (
     <section
-      className="h-[150vh] relative"
+      className="h-[100vh] relative"
       id="projects"
       ref={projectsRef}
     >
