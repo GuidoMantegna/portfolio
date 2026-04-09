@@ -105,6 +105,12 @@ body {
   font-family: "Lekton", monospace;
 }
 
+.custom-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(156, 180, 154, 0.1);
+}
+
 /* HOME */
 
 h1 {
@@ -113,6 +119,8 @@ h1 {
 
 .h1-mask {
   background-image: url("./assets/images/pattern-c.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .h1-mask::after {

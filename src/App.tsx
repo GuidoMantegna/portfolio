@@ -1,7 +1,8 @@
 import "./App.css"
-import { Home, Projects, About, Contact } from "./pages"
+import About from "./pages/About"
+import Home from "./pages/Home"
 import { ProjectsSection } from "./pages/Projects-v2"
-import { Layout } from "./components"
+import Layout from "./components/Layout"
 import { ParallaxBackground } from "./components/ParallaxBackground"
 
 function App() {
@@ -11,7 +12,6 @@ function App() {
       <Home />
       <ProjectsSection />
       <About />
-      {/* <Contact /> */}
     </Layout>
   )
 }

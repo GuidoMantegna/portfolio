@@ -1,5 +1,5 @@
 export interface ProjectInfo {
-  id: number;  
+  id: number;
   title: string;
   description: string;
   stack: string;
@@ -125,4 +125,10 @@ export const PROJECTS_INFO: ProjectInfo[] = [
       },
     ],
   },
+];
+
+export const ROLES = [
+  "<Front-end Developer/>",
+  "<Software Engineer/>",
+  "<Love to build things/>",
 ];

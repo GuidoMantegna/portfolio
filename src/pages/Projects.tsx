@@ -8,7 +8,7 @@ import {
 } from "motion/react";
 // @ts-ignore
 import { Project } from "../components";
-import { PROJECTS_INFO, ProjectInfo } from "../constants";
+import { PROJECTS_INFO, ProjectInfo } from "../lib/constants";
 import { IoClose } from "react-icons/io5";
 
 const ProjectsCopy: React.FC = () => {
@@ -72,6 +72,7 @@ const ProjectsCopy: React.FC = () => {
                     responsive, scalable, and interactive web applications—with
                     a focus on clean architecture, reusability, and seamless
                     user experiences.
+
                   </motion.p>
                 </div>
 

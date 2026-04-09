@@ -6,12 +6,7 @@ import {
   useScroll,
 } from "motion/react";
 import { ArrowDown } from "lucide-react";
-
-const ROLES = [
-  "<Front-end Developer/>",
-  "<Software Engineer/>",
-  "<Love to build things/>",
-];
+import { ROLES } from "../lib/constants";
 
 const RolesVariants = (isScr0llingUp: boolean) => ({
   initial: {

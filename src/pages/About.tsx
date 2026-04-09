@@ -55,7 +55,7 @@ function ContactMobile() {
       <ul className="mt-6 flex flex-col w-full max-w-md">
         {isMobile && (
 
-          <li className="flex items-center gap-4 bg-neutral-700/25 bg-opacity-50 backdrop-blur-md px-2 py-4 rounded-lg mb-4">
+          <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
               <FaEnvelope className="h-5 w-5 text-blue-500" />
             </div>
@@ -67,7 +67,7 @@ function ContactMobile() {
             </div>
           </li>
         )}
-        <li className="flex items-center gap-4 bg-neutral-700/25 bg-opacity-50 backdrop-blur-md px-2 py-4 rounded-lg mb-4">
+        <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
             <FaLinkedin className="h-5 w-5 text-blue-500" />
           </div>
@@ -78,7 +78,7 @@ function ContactMobile() {
             </a>
           </div>
         </li>
-        <li className="flex items-center gap-4 bg-neutral-700/25 bg-opacity-50 backdrop-blur-md px-2 py-4 rounded-lg mb-4">
+        <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
             <FaGithub className="h-5 w-5 text-blue-500" />
           </div>
@@ -89,7 +89,7 @@ function ContactMobile() {
             </a>
           </div>
         </li>
-        <li className="flex items-center gap-4 bg-neutral-700/25 bg-opacity-50 backdrop-blur-md px-2 py-4 rounded-lg mb-4">
+        <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
             <FaSquareXTwitter className="h-5 w-5 text-blue-500" />
           </div>
@@ -110,7 +110,7 @@ function ContactMobile() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Card className="border-neutral-700/25 bg-neutral-900/25 backdrop-blur-md py-2">
+            <Card className="border-neutral-700/25 custom-backdrop py-2">
               <CardContent className="p-2">
                 {isSubmitted ? (
                   <motion.div
@@ -230,20 +230,6 @@ const About: React.FC = () => {
     setSection(latest < 0.5 ? "About" : "Contact")
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-  }
-
   return (
     <motion.section
       id="about"
@@ -311,32 +297,10 @@ const About: React.FC = () => {
         {section === "About" ? (
 
           <div>
-            <div className="mt-6 leading-5 font-extralight text-sm bg-black/10 backdrop-blur-md p-2 rounded-lg">
+            <div className="mt-6 leading-5 font-extralight text-sm custom-backdrop p-2 rounded-lg">
               <p>I'm a software engineer specializing in frontend development, with a strong background in the React.js ecosystem.
                 I have solid leadership skills and actively drive projects forward, focusing on architecture, performance, and the adoption of modern tools while ensuring best development practices are followed. I also design and leverage AI Development workflows to improve engineering productivity.
               </p>
-              {/* <p className="">
-                <span className="font-medium">Senior Frontend Developer</span> with
-                a thorough understanding of
-                <span className="font-medium"> React</span> and its core principles,
-                experienced in its most popular workflows, design patterns and
-                libraries. Proficiency in developing
-                <span className="font-medium"> end-to-end</span> applications using
-                the <span className="font-medium">MERN</span> stack.
-              </p>
-              <p className="mt-4">
-                Driven by a passion for{" "}
-                <span className="font-medium">
-                  building intuitive and high-quality applications
-                </span>
-                , I prioritize{" "}
-                <span className="font-medium">
-                  clean code practices and attention to UX/UI details
-                </span>
-                . Strong organizational skills, efficiently managing tasks and
-                collaborating effectively with cross-functional teams thanks to
-                cultivated interpersonal and communication abilities.
-              </p> */}
               <div className="flex flex-wrap justify-center mt-2">
                 {HARD_SKILLS.map((skill) => (
                   <Badge variant="secondary" className="mt-2 bg-primary/10 text-primary">
