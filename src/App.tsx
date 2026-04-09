@@ -6,13 +6,13 @@ import { ParallaxBackground } from "./components/ParallaxBackground"
 
 function App() {
   return (
-      <Layout>
-        <ParallaxBackground />
-        <Home />
-        <ProjectsSection />
-        <About />
-        <Contact />
-      </Layout>
+    <Layout>
+      <ParallaxBackground />
+      <Home />
+      <ProjectsSection />
+      <About />
+      {/* <Contact /> */}
+    </Layout>
   )
 }
 
