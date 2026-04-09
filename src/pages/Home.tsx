@@ -37,13 +37,13 @@ const RolesVariants = (isScr0llingUp: boolean) => ({
 
 const CODE_LINE_NUMBERS = [...Array(window.innerHeight)].map((_, i) => i + 1);
 
-function GuidoHeadline({ className }: { className?: string }) {
+function GuidoHeadline({ className, isMask }: { className?: string; isMask?: boolean }) {
   return (
-    <motion.h1 className={`leading-[35px] md:leading-[50px] ${className || ""}`} layout>
+    <motion.h1 className={`leading-[35px] md:leading-[50px] ${isMask ? "text-white" : ""}`} layout>
       <span className="text-[90px] md:text-[120px] font-extrabold tracking-tighter">Guido</span>
       <br />
       <span className="text-[50px] md:text-[120px] font-extrabold tracking-[-7px]">
-        <span className="GM-logo text-[80px] md:text-[120px] font-extrabold">M</span>antegna.
+        <span className={`GM-logo text-[80px] md:text-[120px] font-extrabold  ${isMask ? "-dark" : "-light"}`}>M</span>antegna.
       </span>
     </motion.h1>
   )
@@ -94,7 +94,7 @@ const Home: React.FC = () => {
           {/* CODE LINE NUMBERS */}
           <CodeLines codeLines={codeLines} />
           {/* GUIDO MANTEGNA */}
-          <GuidoHeadline />
+          <GuidoHeadline className="-light" />
           {/* ROLES */}
           <AnimatePresence mode="popLayout">
             {ROLES.map((text, index) => {
@@ -139,7 +139,7 @@ const Home: React.FC = () => {
             }}
           >
             <CodeLines codeLines={codeLines} className="text-white" />
-            <GuidoHeadline className="text-white" />
+            <GuidoHeadline className="text-white -dark" isMask={true} />
           </motion.div>
         </motion.div>
       </section>
