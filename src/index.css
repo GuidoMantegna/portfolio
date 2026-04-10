@@ -100,6 +100,43 @@ body {
   background-color: #020202;
 }
 
+.contenedor-vineta {
+  /* mask-image: radial-gradient(circle at center, black 55%, transparent 90%); */
+  /* -webkit-mask-image: radial-gradient(ellipse at center,
+      black 50%,
+      rgba(0, 0, 0, 0.5) 75%,
+      transparent 90%);
+  mask-image: radial-gradient(ellipse at center,
+      black 50%,
+      rgba(0, 0, 0, 0.5) 75%,
+      transparent 90%); */
+  -webkit-mask-image: linear-gradient(to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent);
+
+  mask-image: linear-gradient(to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent);
+}
+
+.contenedor-vineta::after {
+  /* content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 110%; */
+  /* Degradado de transparente a negro con forma elíptica */
+  /* background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 100%); */
+  /* background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%); */
+  /* pointer-events: none; */
+  /* Permite hacer clic a través de la capa */
+}
+
 .stack,
 .code-lines-numbers {
   font-family: "Lekton", monospace;

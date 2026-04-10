@@ -9,30 +9,8 @@ import { Button } from "../components/ui/Button";
 import { Card, CardContent } from "../components/ui/Card";
 import { Input } from "../components/ui/Input";
 import { Textarea } from "../components/ui/TextArea";
-import { Send, CheckCircle, MapPin, Mail } from "lucide-react";
-// import { Github, Linkedin, Twitter } from "lucide-react";
-
-const HARD_SKILLS = [
-  // {skill: "HTML", badge: },
-  // {skill: "CSS"},
-  { skill: "JavaScript", badge: "https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" },
-  { skill: "TypeScript", badge: "https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" },
-  { skill: "React.js", badge: "https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black" },
-  { skill: "Git", badge: "https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white" },
-  { skill: "Tailwind", badge: "https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white" },
-  { skill: "Node", badge: "https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white" },
-  { skill: "MongoDB", badge: "https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white" },
-  { skill: "Express", badge: "https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white" },
-  { skill: "Next.js", badge: "https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white" },
-  { skill: "Jest", badge: "https://img.shields.io/badge/Jest-99424F?style=flat&logo=jest&logoColor=white" },
-  { skill: "SASS", badge: "https://img.shields.io/badge/SASS-CC6699?style=flat&logo=sass&logoColor=white" },
-  { skill: "Figma", badge: "https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" },
-  { skill: "Chakra UI", badge: "https://img.shields.io/badge/Chakra_UI-319795?style=flat&logo=chakra-ui&logoColor=white" },
-  { skill: "Jira", badge: "https://img.shields.io/badge/Jira-0052CC?style=flat&logo=jira&logoColor=white" },
-  { skill: "Postman", badge: "https://img.shields.io/badge/Postman-FF6C33?style=flat&logo=postman&logoColor=white" },
-  // { skill: "SCRUM", badge: "https://img.shields.io/badge/SCRUM-000000?style=flat&logo=scrum&logoColor=white" },
-  // { skill: "NPM", badge: "https://img.shields.io/badge/NPM-C10000?style=flat&logo=npm&logoColor=white" },
-];
+import { Send, CheckCircle } from "lucide-react";
+import { HARD_SKILLS, SOCIAL_LINKS } from "../lib/constants";
 
 function ContactMobile() {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -53,53 +31,25 @@ function ContactMobile() {
   return (
     <div className="flex justify-center gap-6 mt-6">
       <ul className="mt-6 flex flex-col w-full max-w-md">
-        {isMobile && (
-
-          <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
-              <FaEnvelope className="h-5 w-5 text-blue-500" />
-            </div>
-            <div>
-              <p className="text-sm font-extralight text-foreground text-slate-400">Email</p>
-              <a href="mailto:mantegnaguido@gmail.com" className="text-sm text-foreground font-light">
-                mantegnaguido@gmail.com
-              </a>
-            </div>
-          </li>
-        )}
-        <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
-            <FaLinkedin className="h-5 w-5 text-blue-500" />
-          </div>
-          <div>
-            <p className="text-sm font-extralight text-foreground text-slate-400">LinkedIn</p>
-            <a href="https://linkedin.com/in/mantegnaguido" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground font-light">
-              /in/mantegnaguido
-            </a>
-          </div>
-        </li>
-        <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
-            <FaGithub className="h-5 w-5 text-blue-500" />
-          </div>
-          <div>
-            <p className="text-sm font-extralight text-foreground text-slate-400">GitHub</p>
-            <a href="https://github.com/mantegnaguido" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground font-light">
-              /mantegnaguido
-            </a>
-          </div>
-        </li>
-        <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
-            <FaSquareXTwitter className="h-5 w-5 text-blue-500" />
-          </div>
-          <div>
-            <p className="text-sm font-extralight text-foreground text-slate-400">Twitter</p>
-            <a href="https://twitter.com/mantegnaguido" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground font-light">
-              /mantegnaguido
-            </a>
-          </div>
-        </li>
+        {SOCIAL_LINKS.map((link) => {
+          if (!isMobile && link.name === "Email") return
+          return (
+            <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
+                {link.name === "Email" && <FaEnvelope className="h-5 w-5 text-blue-500" />}
+                {link.name === "LinkedIn" && <FaLinkedin className="h-5 w-5 text-blue-500" />}
+                {link.name === "GitHub" && <FaGithub className="h-5 w-5 text-blue-500" />}
+                {link.name === "X" && <FaSquareXTwitter className="h-5 w-5 text-blue-500" />}
+              </div>
+              <div>
+                <p className="text-sm font-extralight text-foreground text-slate-400">{link.name}</p>
+                <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground font-light">
+                  {link.info}
+                </a>
+              </div>
+            </li>
+          )
+        })}
       </ul>
       {!isMobile && (
         <>
@@ -208,21 +158,11 @@ function ContactMobile() {
 }
 
 const About: React.FC = () => {
-  const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [contentWidth, setContentWidth] = useState(0);
   const [section, setSection] = useState("About")
-  const isMobile = window.innerWidth < 768; // Example breakpoint for mobile devices
 
-  useLayoutEffect(() => {
-    if (contentRef.current) {
-      setContentWidth(contentRef.current.scrollWidth);
-    }
-  }, []);
-
-  const { scrollYProgress, scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: sectionRef,
-    // offset: ["start start", "end end"],
   });
 
   // Track scroll y position on this section
@@ -233,14 +173,13 @@ const About: React.FC = () => {
   return (
     <motion.section
       id="about"
-      className="h-[150vh] flex items-center justify-center text-white relative"
+      className="h-[200vh] flex justify-center items-start text-white relative"
       ref={sectionRef}
     >
       <motion.div
-        className="w-[90%] lg:w-3/4 sticky top-10"
+        className="w-[90%] lg:w-3/4 sticky top-0 h-screen flex flex-col justify-center"
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        // viewport={{ amount: "all", once: true }}
         transition={{ delay: 0.5, duration: 0.5 }}
       >
         <div className="flex gap-8 items-center">
@@ -288,18 +227,18 @@ const About: React.FC = () => {
               )}
             </div>
           </AnimatePresence>
-          {section === "About" && (
+          {/* {section === "About" && (
             <div className="flex-1">
               <img alt="GM Pic" src={Avatar} className="max-w-[150px] lg:max-w-[200px] m-auto" />
             </div>
-          )}
+          )} */}
         </div>
         {section === "About" ? (
 
           <div>
-            <div className="mt-6 leading-5 font-extralight text-sm custom-backdrop p-2 rounded-lg">
-              <p>I'm a software engineer specializing in frontend development, with a strong background in the React.js ecosystem.
-                I have solid leadership skills and actively drive projects forward, focusing on architecture, performance, and the adoption of modern tools while ensuring best development practices are followed. I also design and leverage AI Development workflows to improve engineering productivity.
+            <div className="mt-6 leading-5 font-extralight text-sm custom-backdrop p-2 lg:p-6 rounded-lg lg:leading-6">
+              <p>I'm a <b>software engineer</b> specializing in <b>frontend development</b>, with a strong background in the <b>React.js</b> ecosystem.
+                I have solid leadership skills and actively drive projects forward, focusing on <b>architecture</b>, <b>performance</b>, and the adoption of modern tools while ensuring best development practices are followed. I also design and leverage <b>AI Development</b> workflows to improve engineering productivity.
               </p>
               <div className="flex flex-wrap justify-center mt-2">
                 {HARD_SKILLS.map((skill) => (
