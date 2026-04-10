@@ -128,7 +128,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
 ];
 
 export const ROLES = [
-  "<Front-end Developer/>",
-  "<Software Engineer/>",
-  "<Love to build things/>",
+  "// Frontend Developer",
+  "// Software Engineer",
+  "// Love to build things",
 ];

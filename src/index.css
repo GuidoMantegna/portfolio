@@ -115,6 +115,10 @@ body {
 
 h1 {
   mix-blend-mode: screen;
+  /* background-image: url("./assets/images/pattern-c.jpg");
+  background-clip: text;
+  background-size: cover;
+  color: transparent; */
 }
 
 .h1-mask {
@@ -144,7 +148,8 @@ h1 {
 
 .roles {
   color: transparent;
-  background: linear-gradient(90deg, rgb(42, 0, 87) 0%, rgb(94, 0, 0) 100%);
+  /* background: linear-gradient(90deg, rgb(42, 0, 87) 0%, rgb(94, 0, 0) 100%); */
+  background: linear-gradient(90deg, oklch(54.359% 0.2183 331.057) 0%, oklch(50.319% 0.08553 203.406) 100%);
   background-clip: text;
 }
 

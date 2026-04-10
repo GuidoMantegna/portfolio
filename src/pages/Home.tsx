@@ -13,7 +13,7 @@ const RolesVariants = (isScr0llingUp: boolean) => ({
     opacity: 0,
     y: isScr0llingUp ? 20 : -20,
     filter: "blur(10px)",
-    transition: { duration: 0.5 },
+    transition: { duration: 0.25 },
   },
   animate: {
     opacity: 1,
@@ -34,11 +34,12 @@ const CODE_LINE_NUMBERS = [...Array(window.innerHeight)].map((_, i) => i + 1);
 
 function GuidoHeadline({ className, isMask }: { className?: string; isMask?: boolean }) {
   return (
-    <motion.h1 className={`leading-[35px] md:leading-[50px] ${isMask ? "text-white" : ""}`} layout>
-      <span className="text-[90px] md:text-[120px] font-extrabold tracking-tighter">Guido</span>
+    <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto`} layout>
+      <span className="text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-tighter">Guido</span>
       <br />
-      <span className="text-[50px] md:text-[120px] font-extrabold tracking-[-7px]">
-        <span className={`GM-logo text-[80px] md:text-[120px] font-extrabold  ${isMask ? "-dark" : "-light"}`}>M</span>antegna.
+      <span className="text-[45px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-[-5px] lg:tracking-[-10px] ">
+        {/* Mantegna. */}
+        <span className={`text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold`}>M</span>antegna.
       </span>
     </motion.h1>
   )
@@ -85,29 +86,31 @@ const Home: React.FC = () => {
     <>
       <section className="h-[250vh] relative bg-white" id="home" ref={titleRef}>
         {/* MAIN CONTENT */}
-        <motion.div className="sticky top-0 h-[100vh] py-[4%] flex flex-col justify-center items-center">
+        <motion.div className="sticky top-0 h-[100vh] flex flex-col justify-center">
           {/* CODE LINE NUMBERS */}
           <CodeLines codeLines={codeLines} />
-          {/* GUIDO MANTEGNA */}
-          <GuidoHeadline className="-light" />
           {/* ROLES */}
-          <AnimatePresence mode="popLayout">
-            {ROLES.map((text, index) => {
-              if (index !== selectedTextIndex) return null;
-              return (
-                <motion.h2
-                  className={`text-[20px] md:text-[60px] font-extrabold md:mt-4 tracking-tighter roles text-center`}
-                  key={`ROLES-${index}`}
-                  variants={RolesVariants(isScr0llingUp)}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                >
-                  {text}
-                </motion.h2>
-              );
-            })}
-          </AnimatePresence>
+          <div className="w-fit my-0 mx-auto">
+            <AnimatePresence mode="popLayout">
+              {ROLES.map((text, index) => {
+                if (index !== selectedTextIndex) return null;
+                return (
+                  <motion.h2
+                    className={`text-[20px] md:text-[35px] font-bold mb-8 ml-2 roles font-mono lg:tracking-[5px]`}
+                    key={`ROLES-${index}`}
+                    variants={RolesVariants(isScr0llingUp)}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
+                    {text}
+                  </motion.h2>
+                );
+              })}
+            </AnimatePresence>
+            {/* GUIDO MANTEGNA */}
+            <GuidoHeadline className="-light" />
+          </div>
           {/* SCROLL INDICATOR */}
           {!selectedTextIndex && (
             <motion.div
