@@ -32,13 +32,12 @@ const RolesVariants = (isScr0llingUp: boolean) => ({
 
 const CODE_LINE_NUMBERS = [...Array(window.innerHeight)].map((_, i) => i + 1);
 
-function GuidoHeadline({ className, isMask, scrollYProgress }: { className?: string; isMask?: boolean; scrollYProgress: number }) {
+function GuidoHeadline({ isMask, scrollYProgress }: { isMask?: boolean; scrollYProgress: number }) {
   const beforeEnding = scrollYProgress <= 0.85;
   const isEnding = scrollYProgress > 0.95;
   // const
   return (
     <AnimatePresence mode="popLayout">
-      {/* <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto`} layout> */}
       <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4 z-21" : ""}`} layout>
         <span className={`font-extrabold tracking-tighter ${isEnding ? "text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
           G
@@ -91,69 +90,66 @@ const Home: React.FC = () => {
     setSelectedTextIndex(Math.floor(latest * 10));
     setH1MaskPosition(-25 * latest * 10 + 200);
     setCodeLines(CODE_LINE_NUMBERS.slice(Math.floor(latest * 10) * 10));
-    console.log("scrollYProgress:", latest, "scrollY:", currY);
   });
 
   return (
-    <>
-      <section className="h-[250vh] relative bg-white" id="home" ref={titleRef}>
-        {/* MAIN CONTENT */}
-        <motion.div className="sticky top-0 h-[100vh] z-50 flex flex-col justify-center">
-          {/* CODE LINE NUMBERS */}
-          <CodeLines codeLines={codeLines} />
-          {/* ROLES */}
-          <div className="w-fit my-0 mx-auto">
-            <AnimatePresence mode="popLayout">
-              {ROLES.map((text, index) => {
-                if (index !== selectedTextIndex) return null;
-                return (
-                  <motion.h2
-                    className={`text-[20px] md:text-[35px] font-bold mb-8 ml-2 roles font-mono lg:tracking-[5px]`}
-                    key={`ROLES-${index}`}
-                    variants={RolesVariants(isScr0llingUp)}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                  >
-                    {text}
-                  </motion.h2>
-                );
-              })}
-            </AnimatePresence>
-            {/* GUIDO MANTEGNA */}
-            <GuidoHeadline className="-light" scrollYProgress={scrollYProgress.get()} />
-          </div>
-          {/* SCROLL INDICATOR */}
-          {!selectedTextIndex && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-col items-center gap-2 absolute bottom-10 left-1/2 transform -translate-x-1/2"
-            >
-              <span className="text-sm text-mist-950">Scroll to explore</span>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <ArrowDown className="h-5 w-5 text-mist-950" />
-              </motion.div>
-            </motion.div>
-          )}
-          {/* H1 MASK */}
+    <section className="h-[250vh] relative bg-white" id="home" ref={titleRef}>
+      {/* MAIN CONTENT */}
+      <motion.div className="sticky top-0 h-[100vh] z-50 flex flex-col justify-center">
+        {/* CODE LINE NUMBERS */}
+        <CodeLines codeLines={codeLines} />
+        {/* ROLES */}
+        <div className="w-fit my-0 mx-auto">
+          <AnimatePresence mode="popLayout">
+            {ROLES.map((text, index) => {
+              if (index !== selectedTextIndex) return null;
+              return (
+                <motion.h2
+                  className={`text-[20px] md:text-[35px] font-bold mb-8 ml-2 roles font-mono lg:tracking-[5px]`}
+                  key={`ROLES-${index}`}
+                  variants={RolesVariants(isScr0llingUp)}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                >
+                  {text}
+                </motion.h2>
+              );
+            })}
+          </AnimatePresence>
+          {/* GUIDO MANTEGNA */}
+          <GuidoHeadline scrollYProgress={scrollYProgress.get()} />
+        </div>
+        {/* SCROLL INDICATOR */}
+        {!selectedTextIndex && (
           <motion.div
-            className="absolute w-full h-full left-0 py-[4%] flex flex-col justify-center items-center h1-mask"
-            style={{
-              clipPath: `inset(${h1MaskPosition}% 0px 0px 0px)`,
-              ["--after-top" as any]: `${h1MaskPosition}%`,
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="flex flex-col items-center gap-2 absolute bottom-10 left-1/2 transform -translate-x-1/2"
           >
-            <CodeLines codeLines={codeLines} className="text-white" />
-            <GuidoHeadline className="text-white -dark" isMask={true} scrollYProgress={scrollYProgress.get()} />
+            <span className="text-sm text-mist-950">Scroll to explore</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <ArrowDown className="h-5 w-5 text-mist-950" />
+            </motion.div>
           </motion.div>
+        )}
+        {/* H1 MASK */}
+        <motion.div
+          className="absolute w-full h-full left-0 py-[4%] flex flex-col justify-center items-center h1-mask"
+          style={{
+            clipPath: `inset(${h1MaskPosition}% 0px 0px 0px)`,
+            ["--after-top" as any]: `${h1MaskPosition}%`,
+          }}
+        >
+          <CodeLines codeLines={codeLines} className="text-white" />
+          <GuidoHeadline isMask={true} scrollYProgress={scrollYProgress.get()} />
         </motion.div>
-      </section>
-    </>
+      </motion.div>
+    </section>
   );
 };
 

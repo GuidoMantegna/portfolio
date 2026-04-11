@@ -1,8 +1,10 @@
 import "./App.css"
-import About from "./pages/About"
+// Sections
 import Home from "./pages/Home"
-import { Projects } from "./pages/Projects-v3"
-import { ProjectsSection } from "./pages/Projects-v2"
+import { Projects } from "./pages/Projects"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
+// UI
 import Layout from "./components/Layout"
 import { ParallaxBackground } from "./components/ParallaxBackground"
 
@@ -11,9 +13,9 @@ function App() {
     <Layout>
       <ParallaxBackground />
       <Home />
-      <ProjectsSection />
-      {/* <Projects /> */}
+      <Projects />
       <About />
+      <Contact />
     </Layout>
   )
 }
