@@ -29,7 +29,7 @@ function SectionHOC({
     const opacity = useTransform(scrollYProgress, [0, 0.18], [0, 1])
 
     return (
-        <motion.section ref={sectionRef} id={section} className="flex justify-center items-start text-white relative h-fit py-10 lg:py-16">
+        <motion.section ref={sectionRef} id={section.toLowerCase()} className="flex justify-center items-start text-white relative h-fit py-10 lg:py-16">
             <div className="w-[90%] lg:w-3/4 flex flex-col justify-center">
                 <motion.div style={{ y, opacity }}>
                     <SectionHeader section={section} sectionSubtitle={sectionSubtitle} />
