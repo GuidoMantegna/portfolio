@@ -17,16 +17,35 @@ function ContactForm() {
   const isMobile = window.innerWidth < 768; // Example breakpoint for mobile devices
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }))
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
+      if (!res.ok) {
+        const text = await res.text()
+        const data = text ? JSON.parse(text) : {}
+        setError(data.error ?? 'Something went wrong.')
+      } else {
+        setIsSubmitted(true)
+      }
+    } catch {
+      setError('Could not reach the server. Please try again.')
+    }
     setIsSubmitting(false)
-    setIsSubmitted(true)
   }
 
   return (
@@ -93,6 +112,8 @@ function ContactForm() {
                           id="name"
                           placeholder="Your name"
                           required
+                          value={formData.name}
+                          onChange={handleChange}
                           className="border-neutral-700/25 bg-neutral-900/25"
                         />
                       </div>
@@ -105,6 +126,8 @@ function ContactForm() {
                           type="email"
                           placeholder="your@email.com"
                           required
+                          value={formData.email}
+                          onChange={handleChange}
                           className="border-neutral-700/25 bg-neutral-900/50"
                         />
                       </div>
@@ -117,6 +140,8 @@ function ContactForm() {
                         id="subject"
                         placeholder="What is this about?"
                         required
+                        value={formData.subject}
+                        onChange={handleChange}
                         className="border-neutral-700/25 bg-neutral-900/50"
                       />
                     </div>
@@ -129,6 +154,8 @@ function ContactForm() {
                         placeholder="Your message..."
                         rows={3}
                         required
+                        value={formData.message}
+                        onChange={handleChange}
                         className="resize-none border-neutral-700/25 bg-neutral-900/50"
                       />
                     </div>
@@ -153,6 +180,7 @@ function ContactForm() {
                         </span>
                       )}
                     </Button>
+                    {error && <p className="text-sm text-red-400 mt-2 text-center">{error}</p>}
                   </form>
                 )}
               </CardContent>
