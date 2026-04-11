@@ -32,16 +32,27 @@ const RolesVariants = (isScr0llingUp: boolean) => ({
 
 const CODE_LINE_NUMBERS = [...Array(window.innerHeight)].map((_, i) => i + 1);
 
-function GuidoHeadline({ className, isMask }: { className?: string; isMask?: boolean }) {
+function GuidoHeadline({ className, isMask, scrollYProgress }: { className?: string; isMask?: boolean; scrollYProgress: number }) {
+  const beforeEnding = scrollYProgress <= 0.85;
+  const isEnding = scrollYProgress > 0.95;
+  // const
   return (
-    <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto`} layout>
-      <span className="text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-tighter">Guido</span>
-      <br />
-      <span className="text-[45px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-[-5px] lg:tracking-[-10px] ">
-        {/* Mantegna. */}
-        <span className={`text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold`}>M</span>antegna.
-      </span>
-    </motion.h1>
+    <AnimatePresence mode="popLayout">
+      {/* <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto`} layout> */}
+      <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4 z-21" : ""}`} layout>
+        <span className={`font-extrabold tracking-tighter ${isEnding ? "text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
+          G
+          <span>{beforeEnding ? "uido" : "M."}</span>
+        </span>
+        <br />
+        {beforeEnding && (
+          <span className="text-[45px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-[-5px] lg:tracking-[-10px] flex">
+            {/* Mantegna. */}
+            <span className={`text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold`}>M</span>antegna.
+          </span>
+        )}
+      </motion.h1>
+    </AnimatePresence>
   )
 }
 
@@ -80,13 +91,14 @@ const Home: React.FC = () => {
     setSelectedTextIndex(Math.floor(latest * 10));
     setH1MaskPosition(-25 * latest * 10 + 200);
     setCodeLines(CODE_LINE_NUMBERS.slice(Math.floor(latest * 10) * 10));
+    console.log("scrollYProgress:", latest, "scrollY:", currY);
   });
 
   return (
     <>
       <section className="h-[250vh] relative bg-white" id="home" ref={titleRef}>
         {/* MAIN CONTENT */}
-        <motion.div className="sticky top-0 h-[100vh] flex flex-col justify-center">
+        <motion.div className="sticky top-0 h-[100vh] z-50 flex flex-col justify-center">
           {/* CODE LINE NUMBERS */}
           <CodeLines codeLines={codeLines} />
           {/* ROLES */}
@@ -109,7 +121,7 @@ const Home: React.FC = () => {
               })}
             </AnimatePresence>
             {/* GUIDO MANTEGNA */}
-            <GuidoHeadline className="-light" />
+            <GuidoHeadline className="-light" scrollYProgress={scrollYProgress.get()} />
           </div>
           {/* SCROLL INDICATOR */}
           {!selectedTextIndex && (
@@ -137,7 +149,7 @@ const Home: React.FC = () => {
             }}
           >
             <CodeLines codeLines={codeLines} className="text-white" />
-            <GuidoHeadline className="text-white -dark" isMask={true} />
+            <GuidoHeadline className="text-white -dark" isMask={true} scrollYProgress={scrollYProgress.get()} />
           </motion.div>
         </motion.div>
       </section>

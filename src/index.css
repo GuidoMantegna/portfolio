@@ -190,12 +190,12 @@ h1 {
   background-clip: text;
 }
 
-/* .GM-logo {
-  background: linear-gradient(65deg, #f73e1e 50%, #000 50%);
+.GM-logo {
+  background: linear-gradient(65deg, #f73e1e 50%, #ffffff 50%);
   background-clip: text;
   color: transparent;
-  padding: 2px;
-  } */
+  padding: 10px;
+}
 
 .-dark {
   background: linear-gradient(55deg, #f73e1e 50%, #ffffff 50%);

@@ -195,35 +195,29 @@ const About: React.FC = () => {
         <div className="flex gap-8 items-center">
           <AnimatePresence mode="popLayout">
             <div className="">
-              {section === "About" && (
-                <motion.h2
-                  key="about"
-                  className="font-extralight text-2xl mb-4"
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
 
-                >
-                  {section} me
-                </motion.h2>
-              )}
+              <motion.h2
+                key={section + "-sub"}
+                className="mb-2 block font-mono text-sm text-primary"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 50 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+
+              >
+                {section === "About" ? "// Who am I?" : "// Get in touch!"}
+              </motion.h2>
               <motion.div
-                className=""
                 initial={{ y: 20 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
                 exit={{ y: -20, transition: { duration: 0.5 } }}
                 key={section}
+                className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
               >
-                <span className="text-lg">Hi! I'm</span> <br />
-                <h3
-                  className="font-black text-6xl GM-logo -dark"
-                >
-                  GM
-                </h3>
+                {section}
               </motion.div>
-              {section === "Contact" && (
+              {/* {section === "Contact" && (
                 <motion.h2
                   key="contact"
                   className="font-extralight text-xl mt-4"
@@ -234,7 +228,7 @@ const About: React.FC = () => {
                 >
                   Get in touch!
                 </motion.h2>
-              )}
+              )} */}
             </div>
           </AnimatePresence>
           {/* {section === "About" && (
