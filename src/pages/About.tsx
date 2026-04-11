@@ -31,10 +31,17 @@ function ContactMobile() {
   return (
     <div className="flex justify-center gap-6 mt-6">
       <ul className="mt-6 flex flex-col w-full max-w-md">
-        {SOCIAL_LINKS.map((link) => {
+        {SOCIAL_LINKS.map((link, index) => {
           if (!isMobile && link.name === "Email") return
           return (
-            <li className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4">
+            <motion.li
+              className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              key={link.name}
+            >
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
                 {link.name === "Email" && <FaEnvelope className="h-5 w-5 text-blue-500" />}
                 {link.name === "LinkedIn" && <FaLinkedin className="h-5 w-5 text-blue-500" />}
@@ -47,7 +54,7 @@ function ContactMobile() {
                   {link.info}
                 </a>
               </div>
-            </li>
+            </motion.li>
           )
         })}
       </ul>
