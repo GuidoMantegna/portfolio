@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { AnimatePresence, motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import Avatar from "../assets/images/avatar.png";
 import { FaLinkedin, FaGithub, FaEnvelope, FaTwitter } from "react-icons/fa"
 import { FaSquareXTwitter } from "react-icons/fa6"
@@ -12,7 +12,7 @@ import { Textarea } from "../components/ui/TextArea";
 import { Send, CheckCircle } from "lucide-react";
 import { HARD_SKILLS, SOCIAL_LINKS } from "../lib/constants";
 
-function ContactMobile() {
+function ContactMobile({ motionY }: { motionY: MotionValue<number> }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -29,7 +29,7 @@ function ContactMobile() {
   const isMobile = window.innerWidth < 768; // Example breakpoint for mobile devices
 
   return (
-    <div className="flex justify-center gap-6 mt-6">
+    <motion.div className="flex justify-center gap-6 mt-6" style={{ y: motionY }}>
       <ul className="mt-6 flex flex-col w-full max-w-md">
         {SOCIAL_LINKS.map((link, index) => {
           if (!isMobile && link.name === "Email") return
@@ -160,7 +160,7 @@ function ContactMobile() {
         </>
       )
       }
-    </div>
+    </motion.div>
   )
 }
 
@@ -171,6 +171,9 @@ const About: React.FC = () => {
   const { scrollYProgress } = useScroll({
     target: sectionRef,
   });
+
+  const bioY = useTransform(scrollYProgress, [0, 0.5], [40, -20]);
+  const contactY = useTransform(scrollYProgress, [0.5, 1], [40, -20]);
 
   // Track scroll y position on this section
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -242,7 +245,7 @@ const About: React.FC = () => {
         </div>
         {section === "About" ? (
 
-          <div>
+          <motion.div style={{ y: bioY }}>
             <div className="mt-6 leading-5 font-extralight text-sm custom-backdrop p-2 lg:p-6 rounded-lg lg:leading-6">
               <p>I'm a <b>software engineer</b> specializing in <b>frontend development</b>, with a strong background in the <b>React.js</b> ecosystem.
                 I have solid leadership skills and actively drive projects forward, focusing on <b>architecture</b>, <b>performance</b>, and the adoption of modern tools while ensuring best development practices are followed. I also design and leverage <b>AI Development</b> workflows to improve engineering productivity.
@@ -255,11 +258,11 @@ const About: React.FC = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         ) : (
           <>
             {/* Contact Form */}
-            <ContactMobile />
+            <ContactMobile motionY={contactY} />
           </>
         )}
       </motion.div>
