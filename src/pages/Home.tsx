@@ -38,8 +38,8 @@ function GuidoHeadline({ isMask, scrollYProgress }: { isMask?: boolean; scrollYP
   // const
   return (
     <AnimatePresence mode="popLayout">
-      <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4 z-21" : ""}`} layout>
-        <span className={`font-extrabold tracking-tighter ${isEnding ? "text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
+      <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4" : ""}`} layout>
+        <span className={`font-extrabold tracking-tighter ${isEnding ? "text-3xl lg:text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
           G
           <span>{beforeEnding ? "uido" : "M."}</span>
         </span>

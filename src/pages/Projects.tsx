@@ -157,7 +157,6 @@ function ProjectCarouselItem({
 
 export function Projects() {
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const sectionRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
   const { scrollYProgress, scrollY } = useScroll({

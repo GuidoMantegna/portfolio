@@ -1,5 +1,5 @@
 // LIBS
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { HARD_SKILLS } from "../lib/constants";
 // UI
@@ -7,7 +7,6 @@ import { Badge } from "../components/ui/Badge";
 import { SectionHOC } from "../components/SectionHOC";
 
 const About: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   return (
     <SectionHOC section="About" sectionSubtitle="// Who am I?">

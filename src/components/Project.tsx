@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
-import { IoDocumentText } from "react-icons/io5";
-import { IoIosRocket } from "react-icons/io";
-import { ProjectInfo } from "../constants";
+// import { FaGithub } from "react-icons/fa";
+// import { IoDocumentText } from "react-icons/io5";
+// import { IoIosRocket } from "react-icons/io";
+import { ProjectInfo } from "../lib/constants";
 
 const Project: React.FC<ProjectInfo> = ({
   title,
   description,
-  stack,
-  links,
-  mockups = "",
-  background,
+  // stack,
+  // links,
+  // mockups = "",
+  // background,
   id,
 }) => {
   return (
@@ -28,11 +28,11 @@ const Project: React.FC<ProjectInfo> = ({
           className="text-white w-1/2"
         >
           <h2 className="font-black text-5xl">{title}</h2>
-          <p className="stack mt-3 text-pink-400 text-sm">{stack}</p>
+          {/* <p className="stack mt-3 text-pink-400 text-sm">{stack}</p> */}
           <p className="font-extralight text-sm leading-7 mt-6">
             {description}
           </p>
-          <div className="mt-10 font-light flex gap-6 text-sm flex-wrap">
+          {/* <div className="mt-10 font-light flex gap-6 text-sm flex-wrap">
             {links.map((link) => (
               <a
                 key={link.name}
@@ -47,15 +47,15 @@ const Project: React.FC<ProjectInfo> = ({
                 {link.name}
               </a>
             ))}
-          </div>
+          </div> */}
         </motion.div>
-        <motion.img
+        {/* <motion.img
           src={mockups}
           alt={title}
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ delay: 0.2, duration: 0.25 }}
-        />
+        /> */}
       </motion.div>
       {/* Right side - Image */}
       <motion.div
@@ -68,12 +68,12 @@ const Project: React.FC<ProjectInfo> = ({
           layoutId={`project-image-${id}`}
           className="w-full h-full rounded-l-2xl overflow-hidden"
         >
-          <motion.img
+          {/* <motion.img
             layoutId={`project-img-${id}`}
             src={background}
             alt={title}
             className="w-full h-full object-cover"
-          />
+          /> */}
         </motion.div>
       </motion.div>
     </div>

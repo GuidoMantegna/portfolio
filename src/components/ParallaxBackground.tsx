@@ -6,7 +6,6 @@ export function ParallaxBackground() {
   const vh = window.innerHeight
   const homeEnd = vh * 2.5 // Home section is h-[250vh]
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3])
   const rotation = useTransform(scrollYProgress, [0, 1], ["0deg", "10deg"])
 

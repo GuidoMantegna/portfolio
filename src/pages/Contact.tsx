@@ -1,5 +1,5 @@
 // LIBS
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { SOCIAL_LINKS } from "../lib/constants"
 import { motion } from "framer-motion"
 // UI
@@ -166,8 +166,6 @@ function ContactForm() {
 }
 
 const Contact: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   return (
     <SectionHOC section="Contact" sectionSubtitle="// Get in touch!">
       <ContactForm />
