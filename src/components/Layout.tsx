@@ -1,29 +1,22 @@
-import React, { useState } from "react"
+import React from "react"
 import { motion } from "framer-motion"
+
 interface LayoutProps {
   children: React.ReactNode
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="relative">
-      <header className="flex justify-between w-full absolute left-0 px-10 py-8 z-[1] bg-white">
-        <a href="#home" className="text-4xl font-black tracking-[-5px] GM-logo">
-          GM.
-        </a>
-        <nav className="flex gap-5 items-center">
-          <a href="#projects" className="text-xl font-bold">
-            PROJECTS
-          </a>
-          <a href="#about" className="text-xl font-bold">
-            ABOUT
-          </a>
-          <a href="#contact" className="text-xl font-bold">
-            CONTACT
-          </a>
-        </nav>
-      </header>
+    <div className="relative max-w-screen">
       {children}
+      <motion.footer
+        className="absolute bottom-2 p-4 w-full text-center"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.5 }}
+      >
+        <p className="text-xs font-light text-muted-foreground">Designed & developed by Guido Mantegna © - Buenos Aires, Argentina</p>
+      </motion.footer>
     </div>
   )
 }
