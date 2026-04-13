@@ -162,6 +162,7 @@ h1 {
   background-image: url("./assets/images/pattern-c.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  will-change: clip-path;
 }
 
 .h1-mask::after {
