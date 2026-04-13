@@ -39,7 +39,7 @@ function GuidoHeadline({ isMask, scrollYProgress }: { isMask?: boolean; scrollYP
   return (
     <AnimatePresence mode="popLayout">
       <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4" : ""}`} layout>
-        <span className={`font-extrabold tracking-tighter ${isEnding ? "text-3xl lg:text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
+        <span className={`font-extrabold tracking-tighter ${isEnding ? "text-2xl lg:text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
           G
           <span>{beforeEnding ? "uido" : "M."}</span>
         </span>
@@ -137,6 +137,8 @@ const Home: React.FC = () => {
             </motion.div>
           </motion.div>
         )}
+        {/* GRADIENT MASK */}
+        <div className="absolute -bottom-[200px] h-[200px] w-full bg-gradient-to-b from-black to-transparent -z-10" />
         {/* H1 MASK */}
         <motion.div
           className="absolute w-full h-full left-0 py-[4%] flex flex-col justify-center items-center h1-mask"

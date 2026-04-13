@@ -63,18 +63,18 @@ export function Navigation() {
                 onClick={() => setIsOpen(true)}
                 aria-label="Open menu"
             >
-                <Menu size={26} />
+                <Menu size={24} />
             </motion.button>
 
             {/* Desktop pill nav */}
             <motion.nav
-                className="fixed top-4 z-[100] w-full justify-center hidden sm:flex"
+                className="fixed top-4 z-[100] w-full justify-end hidden sm:flex px-6"
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
             >
                 <motion.div
-                    className="flex items-center gap-1 rounded-full border border-border/50 bg-background/80 px-2 py-2"
+                    className="flex items-center gap-1"
                     style={{
                         opacity: navOpacity,
                         backdropFilter: `blur(${navBlur}px)`,
@@ -84,7 +84,7 @@ export function Navigation() {
                         <button
                             key={item.name}
                             onClick={() => scrollToSection(item.href)}
-                            className={`relative px-4 py-2 text-sm font-medium transition-colors ${activeSection === item.href.slice(1)
+                            className={`relative px-4 py-2 text-md font-medium transition-colors ${activeSection === item.href.slice(1)
                                 ? "text-foreground"
                                 : "text-muted-foreground hover:text-foreground"
                                 }`}
@@ -115,7 +115,7 @@ export function Navigation() {
                         {/* Top bar */}
                         <div className="flex items-center justify-between mb-12">
                             <button
-                                className={`font-extrabold tracking-tighter text-3xl GM-logo`}
+                                className={`font-extrabold tracking-tighter text-2xl GM-logo`}
                             // onClick={() => { handleMobileNavClick("#home") }}
                             >
                                 GM.
