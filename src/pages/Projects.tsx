@@ -185,8 +185,9 @@ export function Projects() {
 
   const scrollToProject = (index: number) => {
     if (!wrapperRef.current) return
-    const wrapperTop = wrapperRef.current.offsetTop
-    window.scrollTo({ top: wrapperTop + index * window.innerHeight + 1, behavior: "smooth" })
+    const wrapperTop = wrapperRef.current.getBoundingClientRect().top + window.scrollY
+    const scrollRange = wrapperRef.current.offsetHeight - window.innerHeight
+    window.scrollTo({ top: wrapperTop + (index / PROJECTS_INFO.length) * scrollRange + 1, behavior: "smooth" })
   }
 
   return (
