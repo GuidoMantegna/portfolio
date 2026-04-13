@@ -49,13 +49,13 @@ function ContactForm() {
   }
 
   return (
-    <motion.div className="flex justify-center gap-6 my-10">
-      <ul className="mt-6 flex flex-col w-full max-w-md">
+    <motion.div className="flex justify-center items-center gap-6 my-10">
+      <ul className="mt-6 md:mt-0 flex flex-col w-full max-w-md gap-4">
         {SOCIAL_LINKS.map((link, index) => {
           if (!isMobile && link.name === "Email") return
           return (
             <motion.li
-              className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg mb-4"
+              className="flex items-center gap-4 custom-backdrop px-2 py-4 rounded-lg"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -63,14 +63,14 @@ function ContactForm() {
               key={link.name}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
-                {link.name === "Email" && <FaEnvelope className="h-5 w-5 text-blue-500" />}
-                {link.name === "LinkedIn" && <FaLinkedin className="h-5 w-5 text-blue-500" />}
-                {link.name === "GitHub" && <FaGithub className="h-5 w-5 text-blue-500" />}
-                {link.name === "X" && <FaSquareXTwitter className="h-5 w-5 text-blue-500" />}
+                {link.name === "Email" && <FaEnvelope className="h-5 w-5 text-accent" />}
+                {link.name === "LinkedIn" && <FaLinkedin className="h-5 w-5 text-primary" />}
+                {link.name === "GitHub" && <FaGithub className="h-5 w-5 text-primary" />}
+                {link.name === "X" && <FaSquareXTwitter className="h-5 w-5 text-primary" />}
               </div>
               <div>
-                <p className="text-sm font-extralight text-foreground text-slate-400">{link.name}</p>
-                <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground font-light">
+                <p className="text-sm font-extralight text-slate-400">{link.name}</p>
+                <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm font-light">
                   {link.info}
                 </a>
               </div>
@@ -105,7 +105,7 @@ function ContactForm() {
                   <form onSubmit={handleSubmit} className="lg:space-y-2">
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div className="lg:space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-foreground">
+                        <label htmlFor="name" className="text-sm font-light">
                           Name
                         </label>
                         <Input
@@ -118,7 +118,7 @@ function ContactForm() {
                         />
                       </div>
                       <div className="lg:space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-foreground">
+                        <label htmlFor="email" className="text-sm font-light">
                           Email
                         </label>
                         <Input
@@ -133,7 +133,7 @@ function ContactForm() {
                       </div>
                     </div>
                     <div className="lg:space-y-2">
-                      <label htmlFor="subject" className="text-sm font-medium text-foreground">
+                      <label htmlFor="subject" className="text-sm font-light">
                         Subject
                       </label>
                       <Input
@@ -146,7 +146,7 @@ function ContactForm() {
                       />
                     </div>
                     <div className="lg:space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-foreground">
+                      <label htmlFor="message" className="text-sm font-light">
                         Message
                       </label>
                       <Textarea

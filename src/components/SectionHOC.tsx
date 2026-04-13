@@ -30,7 +30,7 @@ function SectionHOC({
 
     return (
         <motion.section ref={sectionRef} id={section.toLowerCase()} className="flex justify-center items-start text-white relative h-fit py-10 lg:py-16">
-            <div className="w-[90%] lg:w-3/4 flex flex-col justify-center">
+            <div className="w-[90%] max-w-[1024px] flex flex-col justify-center relative z-[100]">
                 <motion.div style={{ y, opacity }}>
                     <SectionHeader section={section} sectionSubtitle={sectionSubtitle} />
                     {children}
