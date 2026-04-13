@@ -19,7 +19,7 @@ function SectionHeader({ section, sectionSubtitle }: { section: string; sectionS
                     animate={{ y: 0 }}
                     transition={{ duration: 0.5 }}
                     exit={{ y: -20, transition: { duration: 0.5 } }}
-                    className="text-3xl font-bold tracking-tight sm:text-5xl uppercase"
+                    className="text-3xl font-bold tracking-tight sm:text-4xl uppercase"
                 >
                     {section}
                 </motion.div>
