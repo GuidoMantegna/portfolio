@@ -49,7 +49,7 @@ function ContactForm() {
   }
 
   return (
-    <motion.div className="flex justify-center gap-6 mt-6">
+    <motion.div className="flex justify-center gap-6 my-10">
       <ul className="mt-6 flex flex-col w-full max-w-md">
         {SOCIAL_LINKS.map((link, index) => {
           if (!isMobile && link.name === "Email") return
