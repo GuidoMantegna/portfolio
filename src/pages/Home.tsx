@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
   useScroll,
+  useTransform,
+  MotionValue,
 } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import { ROLES } from "../lib/constants";
 
-const RolesVariants = (isScr0llingUp: boolean) => ({
+const RolesVariants = (isScrollingUp: boolean) => ({
   initial: {
     opacity: 0,
-    y: isScr0llingUp ? 20 : -20,
+    y: isScrollingUp ? 20 : -20,
     filter: "blur(10px)",
     transition: { duration: 0.25 },
   },
@@ -22,7 +24,7 @@ const RolesVariants = (isScr0llingUp: boolean) => ({
   },
   exit: {
     opacity: 0,
-    y: isScr0llingUp ? -20 : 20,
+    y: isScrollingUp ? -20 : 20,
     filter: "blur(10px)",
     transition: {
       duration: 0.25,
@@ -30,15 +32,33 @@ const RolesVariants = (isScr0llingUp: boolean) => ({
   },
 });
 
-const CODE_LINE_NUMBERS = [...Array(window.innerHeight)].map((_, i) => i + 1);
+// Capped at 100 — only ~15-30 are ever visible through the mask
+const CODE_LINE_NUMBERS = Array.from({ length: 100 }, (_, i) => i + 1);
 
-function GuidoHeadline({ isMask, scrollYProgress }: { isMask?: boolean; scrollYProgress: number }) {
-  const beforeEnding = scrollYProgress <= 0.85;
-  const isEnding = scrollYProgress > 0.95;
-  // const
+const GuidoHeadline = React.memo(function GuidoHeadline({
+  isMask,
+  scrollYProgress,
+}: {
+  isMask?: boolean;
+  scrollYProgress: MotionValue<number>;
+}) {
+  const [phase, setPhase] = useState<"before" | "between" | "ending">("before");
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest > 0.95) setPhase("ending");
+    else if (latest > 0.85) setPhase("between");
+    else setPhase("before");
+  });
+
+  const beforeEnding = phase === "before";
+  const isEnding = phase === "ending";
+
   return (
     <AnimatePresence mode="popLayout">
-      <motion.h1 className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4" : ""}`} layout>
+      <motion.h1
+        className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4" : ""}`}
+        layout
+      >
         <span className={`font-extrabold tracking-tighter ${isEnding ? "text-2xl lg:text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
           G
           <span>{beforeEnding ? "uido" : "M."}</span>
@@ -46,30 +66,31 @@ function GuidoHeadline({ isMask, scrollYProgress }: { isMask?: boolean; scrollYP
         <br />
         {beforeEnding && (
           <span className="text-[45px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-[-5px] lg:tracking-[-10px] flex">
-            {/* Mantegna. */}
-            <span className={`text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold`}>M</span>antegna.
+            <span className="text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold">M</span>antegna.
           </span>
         )}
       </motion.h1>
     </AnimatePresence>
-  )
-}
+  );
+});
 
-function CodeLines({ codeLines, className }: { codeLines: number[]; className?: string }) {
+const CodeLines = React.memo(function CodeLines({
+  codeLines,
+  className,
+}: {
+  codeLines: number[];
+  className?: string;
+}) {
   return (
     <motion.div className={`code-lines-numbers absolute left-2 flex flex-col text-gray-900 text-xs gap-2 text-right h-[75%] overflow-hidden mask ${className || ""}`}>
       {codeLines.map((lineNumber) => (
-        <motion.span
-          key={`line-number-${lineNumber}`}
-          className="line-number"
-          layout
-        >
+        <span key={`line-number-${lineNumber}`} className="line-number">
           {lineNumber}
-        </motion.span>
+        </span>
       ))}
     </motion.div>
-  )
-}
+  );
+});
 
 const Home: React.FC = () => {
   const titleRef = React.useRef<HTMLDivElement>(null);
@@ -77,19 +98,30 @@ const Home: React.FC = () => {
     target: titleRef,
     offset: ["start start", "end end"],
   });
-  const [selectedTextIndex, setSelectedTextIndex] = useState(0);
-  const [isScr0llingUp, setIsScr0llingUp] = useState(false);
-  const [h1MaskPosition, setH1MaskPosition] = useState(100);
-  const [codeLines, setCodeLines] = useState<number[]>(CODE_LINE_NUMBERS);
+  const [scrollState, setScrollState] = useState({ selectedTextIndex: 0, isScrollingUp: false });
+  const { selectedTextIndex, isScrollingUp } = scrollState;
+
+  // Derived — only recalculates when selectedTextIndex changes (~10 times total per scroll)
+  const codeLines = useMemo(
+    () => CODE_LINE_NUMBERS.slice(selectedTextIndex * 10),
+    [selectedTextIndex]
+  );
+
+  // MotionValues applied directly to DOM — bypass React reconciliation entirely
+  const h1ClipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["inset(200% 0px 0px 0px)", "inset(-50% 0px 0px 0px)"]
+  );
+  // Formula: 200 - 250 * progress  (matches original: -25 * latest * 10 + 200)
+  const afterTopCSS = useTransform(scrollYProgress, (v) => `${200 - 250 * v}%`);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const prevY = scrollY.getPrevious() || 0;
-    const currY = scrollY.get();
-
-    setIsScr0llingUp(prevY > currY);
-    setSelectedTextIndex(Math.floor(latest * 10));
-    setH1MaskPosition(-25 * latest * 10 + 200);
-    setCodeLines(CODE_LINE_NUMBERS.slice(Math.floor(latest * 10) * 10));
+    const prevY = scrollY.getPrevious() ?? 0;
+    setScrollState({
+      selectedTextIndex: Math.floor(latest * 10),
+      isScrollingUp: scrollY.get() < prevY,
+    });
   });
 
   return (
@@ -105,9 +137,9 @@ const Home: React.FC = () => {
               if (index !== selectedTextIndex) return null;
               return (
                 <motion.h2
-                  className={`text-[20px] md:text-[35px] font-bold mb-8 ml-2 roles font-mono lg:tracking-[5px]`}
+                  className="text-[20px] md:text-[35px] font-bold mb-8 ml-2 roles font-mono lg:tracking-[5px]"
                   key={`ROLES-${index}`}
-                  variants={RolesVariants(isScr0llingUp)}
+                  variants={RolesVariants(isScrollingUp)}
                   initial="initial"
                   animate="animate"
                   exit="exit"
@@ -118,7 +150,7 @@ const Home: React.FC = () => {
             })}
           </AnimatePresence>
           {/* GUIDO MANTEGNA */}
-          <GuidoHeadline scrollYProgress={scrollYProgress.get()} />
+          <GuidoHeadline scrollYProgress={scrollYProgress} />
         </div>
         {/* SCROLL INDICATOR */}
         {!selectedTextIndex && (
@@ -143,12 +175,12 @@ const Home: React.FC = () => {
         <motion.div
           className="absolute w-full h-full left-0 py-[4%] flex flex-col justify-center items-center h1-mask"
           style={{
-            clipPath: `inset(${h1MaskPosition}% 0px 0px 0px)`,
-            ["--after-top" as any]: `${h1MaskPosition}%`,
+            clipPath: h1ClipPath,
+            ["--after-top" as any]: afterTopCSS,
           }}
         >
           <CodeLines codeLines={codeLines} className="text-white" />
-          <GuidoHeadline isMask={true} scrollYProgress={scrollYProgress.get()} />
+          <GuidoHeadline isMask={true} scrollYProgress={scrollYProgress} />
         </motion.div>
       </motion.div>
     </section>
