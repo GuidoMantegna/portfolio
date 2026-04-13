@@ -95,7 +95,7 @@ const Home: React.FC = () => {
   return (
     <section className="h-[250vh] relative bg-white" id="home" ref={titleRef}>
       {/* MAIN CONTENT */}
-      <motion.div className="sticky top-0 h-[100vh] z-50 flex flex-col justify-center">
+      <motion.div className="sticky top-0 h-[100vh] z-[90] flex flex-col justify-center">
         {/* CODE LINE NUMBERS */}
         <CodeLines codeLines={codeLines} />
         {/* ROLES */}

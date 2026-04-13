@@ -1,5 +1,5 @@
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react"
-import { useState, useEffect } from "react"
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from "motion/react"
+import { useState, useEffect, useRef } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
@@ -12,9 +12,24 @@ const navItems = [
 export function Navigation() {
     const [activeSection, setActiveSection] = useState("home")
     const [isOpen, setIsOpen] = useState(false)
+    const [navVisible, setNavVisible] = useState(false)
+    const lastScrollY = useRef(0)
     const { scrollY } = useScroll()
     const navOpacity = useTransform(scrollY, [0, 100], [0, 1])
     const navBlur = useTransform(scrollY, [0, 100], [0, 10])
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const homeBottom = document.getElementById("home")?.offsetHeight ?? 0
+        const prev = lastScrollY.current
+        if (latest < homeBottom) {
+            setNavVisible(false)
+        } else if (latest < prev - 5) {
+            setNavVisible(true)
+        } else if (latest > prev + 5) {
+            setNavVisible(false)
+        }
+        lastScrollY.current = latest
+    })
 
     useEffect(() => {
         const handleScroll = () => {
@@ -54,12 +69,19 @@ export function Navigation() {
 
     return (
         <>
+            {/* Top gradient overlay */}
+            <motion.div
+                className="fixed top-0 left-0 w-full h-24 z-[90] pointer-events-none"
+                style={{ background: "linear-gradient(to bottom, black 0%, transparent 100%)" }}
+                animate={{ opacity: navVisible ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+            />
+
             {/* Hamburger button — mobile only */}
             <motion.button
                 className="fixed top-4 right-4 z-[200] flex sm:hidden items-center justify-center text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                animate={{ y: navVisible ? 0 : -60, opacity: navVisible ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 onClick={() => setIsOpen(true)}
                 aria-label="Open menu"
             >
@@ -69,9 +91,8 @@ export function Navigation() {
             {/* Desktop pill nav */}
             <motion.nav
                 className="fixed top-4 z-[100] w-full justify-end hidden sm:flex px-6"
-                initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                animate={{ y: navVisible ? 0 : -60, opacity: navVisible ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
             >
                 <motion.div
                     className="flex items-center gap-1"
