@@ -127,7 +127,7 @@ const Home: React.FC = () => {
   return (
     <section className="h-[150vh] relative bg-white" id="home" ref={titleRef}>
       {/* MAIN CONTENT */}
-      <motion.div className="sticky top-0 h-[100vh] z-[999] flex flex-col justify-center">
+      <motion.div className="sticky top-0 h-[100vh] z-[200] flex flex-col justify-center">
         {/* CODE LINE NUMBERS */}
         <CodeLines codeLines={codeLines} />
         {/* ROLES */}
