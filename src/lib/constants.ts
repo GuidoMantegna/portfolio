@@ -15,7 +15,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
   {
     id: 1,
     title: "Threat Intelligence Dashboard",
-    subtitle: "Dashboard Demo",
+    subtitle: "Dashboard Demo (web app)",
     description: "• Dashboard for monitoring cybersecurity threat indicators and intelligence campaigns.",
     longDescription: "• Dashboard for monitoring cybersecurity threat indicators and intelligence campaigns. Features include real-time data visualization, filtering mechanisms, and performance-optimized UI rendering.",
     tags: ["React", "TypeScript", "Vitest", "Tailwind CSS"],
@@ -44,7 +44,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
     longDescription: "• Full-stack MERN application that generates personalized movie recommendations based on user mood. Includes API design, dynamic filtering, and a scalable full-stack architecture.",
     tags: ["MongoDB", "Express.js", "React", "Node.js"],
     features: ["Physics Engine", "Gesture Support", "Spring Animations", "Performance Optimized"],
-    link: "https://recs-tailwind.vercel.app/home",
+    link: "https://recs-tailwind.vercel.app",
     github: "https://github.com/GuidoMantegna/recs-api",
     image: "/movies-rec.png",
   },

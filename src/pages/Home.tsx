@@ -59,14 +59,14 @@ const GuidoHeadline = React.memo(function GuidoHeadline({
         className={`leading-[35px] lg:leading-[50px] ${isMask ? "text-white" : ""} my-0 mx-auto ${isEnding ? "fixed left-4 top-4" : ""}`}
         layout
       >
-        <span className={`font-extrabold tracking-tighter ${isEnding ? "text-2xl lg:text-4xl GM-logo" : "text-[85px] sm:text-[95px] lg:text-[135px]"}`}>
+        <span className={`font-extrabold tracking-tighter ${isEnding ? "text-2xl lg:text-4xl GM-logo" : "text-[55px] sm:text-[95px] lg:text-[135px]"}`}>
           G
           <span>{beforeEnding ? "uido" : "M."}</span>
         </span>
         <br />
         {beforeEnding && (
-          <span className="text-[45px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-[-5px] lg:tracking-[-10px] flex">
-            <span className="text-[85px] sm:text-[95px] lg:text-[135px] font-extrabold">M</span>antegna.
+          <span className="text-[55px] sm:text-[95px] lg:text-[135px] font-extrabold tracking-[-6px] lg:tracking-[-10px]">
+            <span className="text-[55px] sm:text-[95px] lg:text-[135px] font-extrabold">M</span>antegna
           </span>
         )}
       </motion.h1>

@@ -197,7 +197,7 @@ export function Projects() {
       staticChildren={
         /* Carousel wrapper — outside the parallax transform to preserve sticky behaviour */
         <div ref={wrapperRef} className="mt-8 lg:mt-14" style={{ height: `150vh` }}>
-          <div className="sticky top-0 h-screen overflow-hidden px-6 py-6 flex flex-col justify-center">
+          <div className="sticky top-0 h-screen overflow-hidden py-6 flex flex-col justify-center">
             <div className="mx-auto w-full max-w-2xl lg:max-w-6xl">
 
               {/* Carousel Container */}
