@@ -72,7 +72,7 @@ function ProjectCarouselItem({
       >
         <div className="flex flex-col lg:flex-row brightness-[0.85] transition-all duration-300 group-hover:brightness-100">
           {/* Image Section */}
-          <div className="relative w-full overflow-hidden lg:w-1/2 flex items-center justify-center h-[45vh]">
+          <div className="relative w-full overflow-hidden lg:w-1/2 flex items-center justify-center lg:h-auto h-[45vh]">
             <motion.img
               src={project.image}
               alt={project.title}
