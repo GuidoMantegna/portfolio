@@ -50,7 +50,7 @@ function ContactForm() {
 
   return (
     <motion.div className="flex justify-center items-center gap-6 my-10">
-      <ul className="mt-6 md:mt-0 flex flex-col w-full max-w-md gap-4">
+      <ul className="mt-6 md:mt-0 flex flex-col w-full max-w-md gap-2">
         {SOCIAL_LINKS.map((link, index) => {
           if (!isMobile && link.name === "Email") return
           return (
@@ -63,7 +63,7 @@ function ContactForm() {
               key={link.name}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
-                {link.name === "Email" && <FaEnvelope className="h-5 w-5 text-accent" />}
+                {link.name === "Email" && <FaEnvelope className="h-5 w-5 text-primary" />}
                 {link.name === "LinkedIn" && <FaLinkedin className="h-5 w-5 text-primary" />}
                 {link.name === "GitHub" && <FaGithub className="h-5 w-5 text-primary" />}
                 {link.name === "X" && <FaSquareXTwitter className="h-5 w-5 text-primary" />}
