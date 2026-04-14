@@ -170,7 +170,7 @@ const Home: React.FC = () => {
           </motion.div>
         )}
         {/* GRADIENT MASK */}
-        <div className="absolute -bottom-[175px] h-[175px] w-full bg-gradient-to-b from-black to-transparent -z-10" />
+        <div className="absolute -bottom-[75px] h-[75px] w-full bg-gradient-to-b from-black via-black to-transparent -z-10" />
         {/* H1 MASK */}
         <motion.div
           className="absolute w-full h-full left-0 py-[4%] flex flex-col justify-center items-center h1-mask"
