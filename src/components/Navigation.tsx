@@ -71,8 +71,8 @@ export function Navigation() {
         <>
             {/* Top gradient overlay */}
             <motion.div
-                className="fixed top-0 left-0 w-full h-24 z-[90] pointer-events-none"
-                style={{ background: "linear-gradient(to bottom, black 0%, transparent 100%)" }}
+                className="fixed top-0 left-0 w-full h-28 lg:h-30 z-[199] pointer-events-none"
+                style={{ background: "linear-gradient(to bottom, black 0% transparent 100%)" }}
                 animate={{ opacity: navVisible ? 1 : 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
             />
@@ -90,7 +90,7 @@ export function Navigation() {
 
             {/* Desktop pill nav */}
             <motion.nav
-                className="fixed top-4 z-[100] w-full justify-end hidden sm:flex px-6"
+                className="fixed top-4 z-[800] w-full justify-end hidden sm:flex px-6"
                 animate={{ y: navVisible ? 0 : -60, opacity: navVisible ? 1 : 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
             >
