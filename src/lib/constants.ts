@@ -92,7 +92,7 @@ export const HARD_SKILLS = [
 
 export const SOCIAL_LINKS = [
   { name: "Email", info: "mantegnaguido@gmail.com", url: "mailto:mantegnaguido@gmail.com" },
-  { name: "LinkedIn", info: "in/mantegnaguido", url: "https://linkedin.com/in/mantegnaguido" },
-  { name: "GitHub", info: "mantegnaguido", url: "https://github.com/mantegnaguido" },
-  { name: "X", info: "mantegnaguido", url: "https://x.com/mantegnaguido" },
+  { name: "LinkedIn", info: "in/mantegnaguido", url: "https://www.linkedin.com/in/guidomantegna/" },
+  { name: "GitHub", info: "mantegnaguido", url: "https://github.com/GuidoMantegna" },
+  { name: "X", info: "mantegnaguido", url: "https://x.com/guidomantegna" },
 ];
