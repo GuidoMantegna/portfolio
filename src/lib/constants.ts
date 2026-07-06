@@ -14,6 +14,18 @@ export interface ProjectInfo {
 export const PROJECTS_INFO: ProjectInfo[] = [
   {
     id: 1,
+    title: "Adictos Al Padel",
+    subtitle: "Padel event management platform",
+    description: "• Padel event management platform for events discovery, registration and reservations.",
+    longDescription: "• Padel event management platform featuring Google OAuth authentication, event discovery and registration, reservations, waitlists, and a comprehensive admin dashboard for managing events, players, and payments.",
+    tags: ["Next.js", "Supabase", "React Query", "Untitled UI"],
+    features: ["50+ Components", "WCAG 2.1 Compliant", "Tree Shakeable", "Dark Mode Support"],
+    link: "https://adictos-al-padel.vercel.app/",
+    github: "",
+    image: "/adictos-al-padel.png",
+  },
+  {
+    id: 2,
     title: "Threat Intelligence Dashboard",
     subtitle: "Dashboard Demo (web app)",
     description: "• Dashboard for monitoring cybersecurity threat indicators and intelligence campaigns.",
@@ -25,7 +37,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
     image: "/augur-dashboard.png",
   },
   {
-    id: 2,
+    id: 3,
     title: "Multi-Tenant Beauty Center Booking Systemant",
     subtitle: "Booking Platform",
     description: "• Booking platform MVP that allows users to explore beauty center services and schedule appointments online.",
@@ -37,7 +49,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
     image: "/beauty-center.png",
   },
   {
-    id: 3,
+    id: 4,
     title: "Movies Recommendation",
     subtitle: "Social media platform",
     description: "• Full-stack MERN application that generates personalized movie recommendations based on user mood.",
@@ -48,18 +60,18 @@ export const PROJECTS_INFO: ProjectInfo[] = [
     github: "https://github.com/GuidoMantegna/recs-api",
     image: "/movies-rec.png",
   },
-  {
-    id: 4,
-    title: "Meals Market",
-    subtitle: "Groceries Shop & Recipes App",
-    description: "• Web application for purchasing groceries, exploring recipes, and discovering food facts.",
-    longDescription: "• Web application for purchasing groceries, exploring recipes, and discovering food facts. Includes product catalog management, dynamic UI filtering, and recipe exploration.",
-    tags: ["React", "Redux", "Chakra UI", "React Router"],
-    features: ["Auto Tracking", "Detailed Analytics", "Goal Setting", "IDE Integrations"],
-    link: "https://meals-market.vercel.app/",
-    github: "#https://github.com/GuidoMantegna/meals-market",
-    image: "/meals-market.png",
-  },
+  // {
+  //   id: 5,
+  //   title: "Meals Market",
+  //   subtitle: "Groceries Shop & Recipes App",
+  //   description: "• Web application for purchasing groceries, exploring recipes, and discovering food facts.",
+  //   longDescription: "• Web application for purchasing groceries, exploring recipes, and discovering food facts. Includes product catalog management, dynamic UI filtering, and recipe exploration.",
+  //   tags: ["React", "Redux", "Chakra UI", "React Router"],
+  //   features: ["Auto Tracking", "Detailed Analytics", "Goal Setting", "IDE Integrations"],
+  //   link: "https://meals-market.vercel.app/",
+  //   github: "#https://github.com/GuidoMantegna/meals-market",
+  //   image: "/meals-market.png",
+  // },
 ]
 
 export const ROLES = [

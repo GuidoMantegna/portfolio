@@ -92,12 +92,14 @@ function ProjectCarouselItem({
                     Live Project
                   </a>
                 </Button>
-                <Button size="sm" variant="link" asChild className="flex-1 custom-backdrop text-accent text-xs">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Code className="h-4 w-4" />
-                    Source Code
-                  </a>
-                </Button>
+                {project.github && (
+                  <Button size="sm" variant="link" asChild className="flex-1 custom-backdrop text-accent text-xs">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Code className="h-4 w-4" />
+                      Source Code
+                    </a>
+                  </Button>
+                )}
               </div>
             )}
           </div>
@@ -140,12 +142,14 @@ function ProjectCarouselItem({
                     View Live Project
                   </a>
                 </Button>
+                {project.github && (
                 <Button asChild className="flex-1 bg-accent">
                   <a href={project.github} target="_blank" rel="noopener noreferrer">
                     <Code className="mr-2 h-4 w-4" />
                     View Source Code
                   </a>
                 </Button>
+                )}
               </div>
             )}
           </div>
