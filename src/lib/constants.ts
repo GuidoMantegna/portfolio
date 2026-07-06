@@ -77,6 +77,7 @@ export const PROJECTS_INFO: ProjectInfo[] = [
 export const ROLES = [
   "// Frontend Developer",
   "// Software Engineer",
+  "// Product Builder",
   "// Love to build things",
 ];
 
@@ -91,13 +92,15 @@ export const HARD_SKILLS = [
   { skill: "Node", badge: "https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white" },
   { skill: "MongoDB", badge: "https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white" },
   { skill: "Express", badge: "https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white" },
+  { skill: "Supabase", badge: "https://img.shields.io/badge/Supabase-38B2AC?style=flat&logo=supabase&logoColor=white" },
   { skill: "Next.js", badge: "https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white" },
   { skill: "Jest", badge: "https://img.shields.io/badge/Jest-99424F?style=flat&logo=jest&logoColor=white" },
-  { skill: "SASS", badge: "https://img.shields.io/badge/SASS-CC6699?style=flat&logo=sass&logoColor=white" },
+  // { skill: "SASS", badge: "https://img.shields.io/badge/SASS-CC6699?style=flat&logo=sass&logoColor=white" },
   { skill: "Figma", badge: "https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" },
-  { skill: "Chakra UI", badge: "https://img.shields.io/badge/Chakra_UI-319795?style=flat&logo=chakra-ui&logoColor=white" },
+  // { skill: "Chakra UI", badge: "https://img.shields.io/badge/Chakra_UI-319795?style=flat&logo=chakra-ui&logoColor=white" },
   { skill: "Jira", badge: "https://img.shields.io/badge/Jira-0052CC?style=flat&logo=jira&logoColor=white" },
-  { skill: "Postman", badge: "https://img.shields.io/badge/Postman-FF6C33?style=flat&logo=postman&logoColor=white" },
+  { skill: "React Query", badge: "https://img.shields.io/badge/React_Query-FF4154?style=flat&logo=react-query&logoColor=white" },
+  // { skill: "Postman", badge: "https://img.shields.io/badge/Postman-FF6C33?style=flat&logo=postman&logoColor=white" },
   // { skill: "SCRUM", badge: "https://img.shields.io/badge/SCRUM-000000?style=flat&logo=scrum&logoColor=white" },
   // { skill: "NPM", badge: "https://img.shields.io/badge/NPM-C10000?style=flat&logo=npm&logoColor=white" },
 ];
